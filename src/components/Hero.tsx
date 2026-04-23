@@ -54,9 +54,9 @@ export default function Hero() {
             className="object-cover object-center"
           />
 
-          {/* Deep Atmosphere Overlays */}
-          <div className="absolute inset-0 bg-[#0c0602]/30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c0602]/70 via-transparent to-[#0c0602]/70" />
+          {/* Deep Atmosphere Overlays - Cinematic Darkening */}
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80" />
         </motion.div>
 
         {/* ── Layer 1 · Organic Header ── */}
@@ -69,25 +69,34 @@ export default function Hero() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-            className="font-playfair font-black text-6xl md:text-8xl xl:text-9xl mb-8 tracking-tighter leading-[0.85]"
+            className="font-playfair font-black text-6xl md:text-8xl xl:text-9xl mb-4 tracking-tighter leading-tight"
             style={{
               color: "#fdfdf5",
               textShadow: "0 10px 60px rgba(0,0,0,0.6)",
             }}
           >
             Kule Mevlana
-            <br />
-            <span className="italic font-medium text-amber-200/90 mix-blend-lighten">Vitrini</span>
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mb-12"
+          >
+            <span className="text-amber-200/80 font-light tracking-[0.4em] uppercase text-xs md:text-sm lg:text-base border-t border-amber-200/20 pt-4 px-8">
+              Samsun'un Yarım Asırlık Lezzet Mirası
+            </span>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-            className="text-white/90 text-lg md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed mb-12"
+            transition={{ duration: 1.5, delay: 1 }}
+            className="text-white/80 text-lg md:text-xl max-w-3xl mx-auto font-medium leading-relaxed mb-12"
           >
             Hayallerinizdeki pasta, ustalığımızla hayat buluyor. 
-            Kişiye özel butik pasta tasarımlarımız, eşsiz tatlı çeşitlerimiz ve 
+            Kişiye özel butik pasta tasarımlarımız ve 
             fırınımızdan her an çıkan taptaze lezzetlerle gününüzü tatlandırıyoruz.
           </motion.p>
 
@@ -204,8 +213,9 @@ function TrayCard({ cat, index, onClick }: TrayCardProps) {
           /* Baking Tray Shell: Gold/Brass thin border with deep depth */
           boxShadow: `
             0 0 0 1px rgba(217, 167, 74, 0.4), 
-            0 0 30px rgba(0, 0, 0, 0.4),
-            inset 0 0 40px rgba(0, 0, 0, 0.3)
+            0 0 40px rgba(0, 0, 0, 0.5),
+            inset 0 -60px 80px rgba(0, 0, 0, 0.8),
+            inset 0 0 40px rgba(0, 0, 0, 0.2)
           `,
           aspectRatio: "4/5",
         }}
@@ -215,12 +225,12 @@ function TrayCard({ cat, index, onClick }: TrayCardProps) {
           alt={cat.name}
           fill
           sizes="(max-width: 768px) 50vw, 20vw"
-          className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 brightness-90 contrast-[1.05]"
+          className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 brightness-95 contrast-[1.05]"
           priority={index < 3}
         />
 
-        {/* Atmospheric Tint */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0602]/95 via-transparent to-transparent opacity-80" />
+        {/* Atmospheric Tint - Readability Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
         {/* Category Info - Modern Price Tag Aesthetic */}
         <div className="absolute bottom-0 left-0 right-0 p-5">
