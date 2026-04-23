@@ -42,7 +42,7 @@ const Navbar = () => {
             <span className="font-playfair font-black text-xl tracking-tight text-primary group-hover:text-accent transition-colors leading-none">
               KULE MEVLANA
             </span>
-            <span className="text-[8px] font-bold tracking-[0.3em] text-secondary uppercase opacity-80">
+            <span className="text-[9px] font-black tracking-[0.25em] text-primary/90 uppercase">
               CAFE • FIRIN • PASTA
             </span>
           </div>
