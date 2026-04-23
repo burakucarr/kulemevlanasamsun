@@ -20,7 +20,8 @@ export default function CustomOrderForm() {
     window.open(`https://wa.me/905309351955?text=${message}`, "_blank");
   };
 
-  r    <section id="ozel-siparis" className="py-24 md:py-40 bg-gradient-to-br from-[#FFF5F5] via-white to-[#FFF9F0] relative overflow-hidden">
+  return (
+    <section id="ozel-siparis" className="py-24 md:py-40 bg-gradient-to-br from-[#FFF5F5] via-white to-[#FFF9F0] relative overflow-hidden">
       {/* Premium Decorative Elements - Antigravity Style */}
       <motion.div
         animate={{ y: [0, -30, 0], rotate: [0, 10, 0] }}
@@ -158,10 +159,6 @@ export default function CustomOrderForm() {
               </form>
             </div>
           </motion.div>
-        </div>
-      </div>
-    </section>
-   </motion.div>
         </div>
       </div>
     </section>
