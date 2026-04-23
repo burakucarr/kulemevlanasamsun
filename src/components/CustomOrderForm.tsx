@@ -46,15 +46,6 @@ export default function CustomOrderForm() {
           
           {/* Left Content */}
           <div className="relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 px-4 py-2 rounded-full mb-8"
-            >
-              <Sparkles size={14} className="text-accent" />
-              <span className="text-accent font-black text-[10px] uppercase tracking-[0.3em]">Butik Tasarım Atölyesi</span>
-            </motion.div>
-
             <h2 className="font-playfair font-black text-5xl md:text-7xl text-primary mb-8 leading-[1.1]">
               Hayalleriniz <br />
               <span className="text-accent italic">Lezzete</span> Dönüşsün
@@ -67,7 +58,7 @@ export default function CustomOrderForm() {
 
             <div className="space-y-8">
               {[
-                { icon: <ShieldCheck className="text-accent" />, title: "Premium Malzemeler", desc: "Sadece en kaliteli Belçika çikolatası ve taze meyveler." },
+                { icon: <ShieldCheck className="text-accent" />, title: "Özenle Seçilmiş Malzemeler", desc: "Sadece en taze meyveler ve gerçek Belçika çikolatasıyla hazırlıyoruz." },
                 { icon: <MapPin className="text-accent" />, title: "Adrese Teslim", desc: "Atakum ve çevresine özel soğutmalı araçlarımızla teslimat." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-6 items-start group">
