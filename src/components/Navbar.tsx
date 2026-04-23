@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -94,16 +94,6 @@ const Navbar = () => {
               </svg>
             </motion.div>
           </Link>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="relative p-2 text-primary/70 hover:text-accent"
-          >
-            <ShoppingCart size={22} />
-            <span className="absolute top-1 right-1 w-4 h-4 bg-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
-              2
-            </span>
-          </motion.button>
           
           <button 
             className="md:hidden text-white p-1"
