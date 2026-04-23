@@ -66,8 +66,11 @@ export default function Home() {
       <footer className="py-16 md:py-24 border-t border-black/5 text-center bg-background">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h3 className="font-playfair font-black text-3xl md:text-4xl text-primary mb-4 md:mb-6 tracking-tighter">KULE MEVLANA</h3>
-          <p className="text-secondary text-sm font-black tracking-[0.4em] uppercase mb-8 md:mb-10">
+          <p className="text-secondary text-sm font-black tracking-[0.4em] uppercase mb-4">
             CAFE • FIRIN • PASTA
+          </p>
+          <p className="text-primary/70 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 md:mb-10">
+            İşletmeci: <span className="text-primary font-black">EYÜP CAN YİĞİT</span>
           </p>
           
           {/* Location & Contact Info */}
