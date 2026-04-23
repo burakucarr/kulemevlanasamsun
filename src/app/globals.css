@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDFDF5; /* Soft Ivory / Cream (Logo ile tam uyumlu) */
+  --foreground: #21110A; /* Dark Espresso for text */
+  --primary: #3B1E14;    /* Rich Coffee */
+  --secondary: #C5A059;  /* Soft Gold / Crust Brown */
+  --accent: #D32F2F;     /* Natural Strawberry Red */
+  --pistachio: #799351;  /* Natural Moss Green */
+  --cream: #FFFFFF;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-pistachio: var(--pistachio);
+  --color-cream: var(--cream);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Milky Glassmorphism Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px -10px rgba(62, 39, 35, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Antigravity Floating Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+.animate-antigravity {
+  animation: float 6s ease-in-out infinite;
+}
+
+.bg-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(25, 33%, 20%, 1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(45, 60%, 10%, 1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(25, 33%, 20%, 1) 0, transparent 50%);
+}
+
+/* Hero → page transition (dark → cream) */
+.hero-to-cream {
+  background: linear-gradient(to bottom, rgba(26,12,4,0.0) 0%, var(--background) 100%);
+}
+
+/* Card tray hover zoom — used instead of invalid scale-108 */
+.group:hover .tray-img {
+  transform: scale(1.08);
+}
+
+/* Hide scrollbar for horizontal scroll (category cards on mobile) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
