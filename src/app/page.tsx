@@ -6,10 +6,10 @@ import ReelsSection from "@/components/ReelsSection";
 import FloatingContact from "@/components/FloatingContact";
 
 const featuredProducts = [
-  { id: 1, title: "Özel Meyveli Pasta", price: "450", category: "Pasta", imageUrl: "/images/dessert-macro.jpg", delay: 0.1 },
-  { id: 2, title: "Midye Baklava", price: "520", category: "Şerbetli", imageUrl: "/images/baklava-midye.jpg", delay: 0.2, isSpecial: true },
-  { id: 3, title: "Meyveli Kruvasan", price: "120", category: "Fırın", imageUrl: "/images/croissant-fresh.jpg", delay: 0.3 },
-  { id: 4, title: "Hindistan Cevizli", price: "85", category: "Kurabiye", imageUrl: "/images/cookies-coconut.jpg", delay: 0.4 },
+  { id: 1, title: "Özel Meyveli Pasta", price: "450", category: "Pasta", imageUrl: "/images/products/pastalar.webp", delay: 0.1 },
+  { id: 2, title: "Midye Baklava", price: "520", category: "Şerbetli", imageUrl: "/images/products/baklava.webp", delay: 0.2, isSpecial: true },
+  { id: 3, title: "Meyveli Kruvasan", price: "120", category: "Fırın", imageUrl: "/images/products/firin.webp", delay: 0.3 },
+  { id: 4, title: "Butik Kurabiye", price: "85", category: "Kurabiye", imageUrl: "/images/products/kurabiye.webp", delay: 0.4 },
 ];
 
 export default function Home() {
@@ -54,9 +54,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* Reels / Video Section */}
-      <ReelsSection />
 
       {/* Innovative Feature Section */}
       <section className="py-16 md:py-32 bg-white/40 border-y border-black/5">

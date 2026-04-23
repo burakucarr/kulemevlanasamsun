@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   images: {
     // Allow large local product images without size constraints during dev
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],

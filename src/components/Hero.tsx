@@ -17,7 +17,7 @@ const ProductGallery = dynamic(() => import("@/components/ProductGallery"), {
   ssr: false,
 });
 
-/* ── Parallax hook ────────────────────────────── */
+/* ── Parallax hook — Antigravity effect ────────────────────────────── */
 function useParallax(offset: number) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -30,142 +30,103 @@ export default function Hero() {
     null
   );
 
-  /* ── Parallax layers ── */
-  const bg = useParallax(180);      // background drifts slowest
-  const cards = useParallax(-60);   // cards float upward faster
-  const header = useParallax(-30);  // text moves slightly
+  /* ── Antigravity Layers ── */
+  const bg = useParallax(200);      // Background drifts slowest (Living Shop)
+  const cardsLayer = useParallax(-120); // Cards float upward significantly
+  const header = useParallax(-40);  // Text moves subtly
 
   return (
     <>
-      {/* ═══════════════════════════════════════════════
-          HERO — Full-screen shop backdrop + floating cards
-      ══════════════════════════════════════════════ */}
-      <section className="relative min-h-screen overflow-hidden flex flex-col items-center justify-start">
-
-        {/* ── Layer 0 · Full-screen shop background ── */}
+      <section className="relative min-h-[110vh] overflow-hidden flex flex-col items-center justify-start">
+        
+        {/* ── Layer 0 · Living Shop Background (Parallax) ── */}
         <motion.div
           ref={bg.ref}
           style={{ y: bg.y }}
-          className="absolute inset-0 z-0 will-change-transform"
+          className="absolute inset-0 z-0 will-change-transform scale-110"
         >
           <Image
-            src="/images/products/DSCF3496.JPG"
-            alt="Kule Mevlana dükkan içi"
+            src="/images/hero-vertical.webp"
+            alt="Kule Mevlana Vitrin Dikey"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center scale-110"
+            className="object-cover object-center"
           />
 
-          {/* Warm cream overlay — brings warmth without killing the image */}
-          <div className="absolute inset-0 bg-[#2B1609]/55" />
-
-          {/* Top vignette — helps text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A0C04]/70 via-transparent to-[#1A0C04]/80" />
-
-          {/* Warm grain texture overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")",
-              backgroundRepeat: "repeat",
-              backgroundSize: "128px 128px",
-            }}
-          />
+          {/* Deep Atmosphere Overlays */}
+          <div className="absolute inset-0 bg-[#0c0602]/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0c0602]/70 via-transparent to-[#0c0602]/70" />
         </motion.div>
 
-        {/* ── Layer 1 · Header text (mid parallax) ── */}
+        {/* ── Layer 1 · Organic Header ── */}
         <motion.div
           ref={header.ref}
           style={{ y: header.y }}
-          className="relative z-20 text-center pt-36 pb-12 px-6 container mx-auto will-change-transform"
+          className="relative z-20 text-center pt-40 pb-16 px-6 container mx-auto"
         >
-          {/* Badge */}
+          {/* Antigravity Badge */}
           <motion.div
-            initial={{ y: 16, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full mb-8 border border-white/15 bg-white/8 backdrop-blur-md"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="inline-flex items-center gap-3 px-6 py-2 rounded-full mb-10 border border-white/10 bg-white/5 backdrop-blur-xl"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-            <span className="text-white/80 text-[10px] md:text-xs font-black tracking-[0.45em] uppercase">
-              Samsun&apos;un Lezzet Mirası
+            <span className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_12px_#f59e0b] animate-pulse" />
+            <span className="text-white/70 text-[10px] md:text-xs font-black tracking-[0.5em] uppercase">
+              Butik Lezzet Deneyimi
             </span>
           </motion.div>
 
-          {/* Main heading */}
           <motion.h1
-            initial={{ y: 24, opacity: 0 }}
+            initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.15, ease: "easeOut" }}
-            className="font-playfair font-black text-5xl md:text-7xl xl:text-8xl mb-6 tracking-tighter leading-[0.92]"
+            transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+            className="font-playfair font-black text-6xl md:text-8xl xl:text-9xl mb-8 tracking-tighter leading-[0.85]"
             style={{
-              color: "#FDFDF5",
-              textShadow: "0 4px 40px rgba(0,0,0,0.4)",
+              color: "#fdfdf5",
+              textShadow: "0 10px 60px rgba(0,0,0,0.6)",
             }}
           >
             Kule Mevlana
             <br />
-            <span
-              className="italic font-medium"
-              style={{
-                color: "#E8C87A",
-                textShadow: "0 0 60px rgba(232,200,122,0.5)",
-              }}
-            >
-              Vitrini
-            </span>
+            <span className="italic font-medium text-amber-200/90 mix-blend-lighten">Vitrini</span>
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.35 }}
-            className="text-white/60 text-base md:text-lg max-w-lg mx-auto font-medium leading-relaxed mb-10"
+            transition={{ duration: 1.5, delay: 0.5 }}
+            className="text-white/50 text-lg md:text-xl max-w-xl mx-auto font-medium leading-relaxed mb-12"
           >
-            Yarım asırlık tecrübeyle hazırlanan günlük taze lezzetlerimizi
-            keşfedin. Her ürün bir sanat eseri, her lokma bir hikaye.
+            Geleneksel Samsun lezzetleri, modern bir yerçekimsiz vitrinde hayat buluyor. 
+            Her parça birer sanat eseri, her lokma bir keşif.
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
-            initial={{ y: 12, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
-            className="flex flex-wrap gap-3 justify-center"
+            transition={{ duration: 1, delay: 0.7 }}
+            className="flex flex-wrap gap-4 justify-center"
           >
-            <button className="group px-8 py-3.5 rounded-full font-black text-sm uppercase tracking-widest flex items-center gap-2 transition-all duration-300 shadow-[0_8px_30px_rgba(197,160,89,0.4)] hover:shadow-[0_12px_40px_rgba(197,160,89,0.6)] hover:scale-105"
-              style={{ background: "linear-gradient(135deg, #C5A059, #A07A30)", color: "#fff" }}
-            >
-              Hemen Sipariş Ver <ArrowRight size={16} />
+            <button className="group px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest flex items-center gap-3 transition-all duration-500 shadow-[0_15px_40px_rgba(217,167,74,0.3)] hover:shadow-[0_20px_60px_rgba(217,167,74,0.5)] hover:scale-105 bg-gradient-to-br from-[#d9a74a] to-[#a07a30] text-white">
+              Siparişe Başla <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-8 py-3.5 rounded-full font-black text-sm uppercase tracking-widest border border-white/20 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all duration-300">
-              Hikayemiz
+            <button className="px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 transition-all duration-500">
+              Menüyü Gör
             </button>
           </motion.div>
         </motion.div>
 
-        {/* ── Separator ── */}
-        <div className="relative z-20 w-full flex justify-center mb-8">
-          <div className="flex items-center gap-4 px-6">
-            <div className="h-px flex-1 bg-white/10 w-16" />
-            <span className="text-white/30 text-[10px] font-black tracking-[0.4em] uppercase">Kategoriler</span>
-            <div className="h-px flex-1 bg-white/10 w-16" />
-          </div>
-        </div>
-
-        {/* ── Layer 2 · Category cards (fastest parallax) ── */}
+        {/* ── Layer 2 · Fırın Tepsisi (Baking Tray) Cards ── */}
         <motion.div
-          ref={cards.ref}
-          style={{ y: cards.y }}
-          className="relative z-20 w-full px-4 md:px-6 pb-32 will-change-transform"
+          ref={cardsLayer.ref}
+          style={{ y: cardsLayer.y }}
+          className="relative z-20 w-full px-6 pb-40 will-change-transform"
         >
-          {/* Mobile: yatay kaydırmalı, Desktop: grid */}
-          <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5 md:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory md:snap-none scrollbar-hide container mx-auto">
+          <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-10 scrollbar-hide container mx-auto">
             {categories.map((cat, i) => (
-              <div key={cat.id} className="flex-shrink-0 w-[160px] sm:w-[180px] md:w-auto snap-start">
+              <div key={cat.id} className="flex-shrink-0 w-[200px] md:w-auto">
                 <TrayCard
                   cat={cat}
                   index={i}
@@ -176,17 +137,15 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* ── Scroll cue ── */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-white/25"
+          animate={{ y: [0, 12, 0] }}
+          transition={{ repeat: Infinity, duration: 2.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/20"
         >
-          <ChevronDown size={28} />
+          <ChevronDown size={32} />
         </motion.div>
       </section>
 
-      {/* Gallery modal */}
       <AnimatePresence>
         {activeCategory && (
           <ProductGallery
@@ -201,137 +160,97 @@ export default function Hero() {
 }
 
 /* ══════════════════════════════════════════════════
-   TRAY CARD — "Fırın tepsisi" aesthetic
-   - Warm parchment base, very subtle tilt
-   - Thin golden border like a pastry case
-   - Frosted glass name label at bottom
-══════════════════════════════════════════════════ */
+   TRAY CARD — High-end Baking Tray Aesthetic
+   - Floating on atmosphere
+   - Thin gold/brass edge
+   - Randomized gravity tilts
+   ══════════════════════════════════════════════════ */
 interface TrayCardProps {
   cat: ProductCategory;
   index: number;
   onClick: () => void;
 }
 
-const TILTS = [-2.5, 1.8, -1.2, 2.2, -1.6]; // subtle static tilts per card
+const STATIC_TILTS = [-3, 2, -1.5, 3.5, -2];
 
 function TrayCard({ cat, index, onClick }: TrayCardProps) {
-  const tilt = TILTS[index % TILTS.length];
-
-  /* Float animation — each card at its own rhythm */
-  const floatDuration = 6 + index * 0.7;
-  const floatDelay = index * 0.5;
+  const initialTilt = STATIC_TILTS[index % STATIC_TILTS.length];
 
   return (
     <motion.div
-      initial={{ y: 60, opacity: 0, rotate: tilt }}
+      initial={{ y: 100, opacity: 0, rotate: initialTilt }}
       animate={{
-        y: [0, -18, 0],
+        y: [0, -25, 0],
         opacity: 1,
-        rotate: [tilt, tilt + 1, tilt],
+        rotate: [initialTilt, initialTilt + 1, initialTilt],
       }}
       transition={{
-        opacity: { duration: 0.8, delay: 0.1 * index },
+        opacity: { duration: 1, delay: 0.15 * index },
         y: {
-          duration: floatDuration,
+          duration: 7 + index,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: floatDelay,
+          delay: index * 0.4,
         },
         rotate: {
-          duration: floatDuration + 1.5,
+          duration: 9 + index,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: floatDelay,
+          delay: index * 0.2,
         },
       }}
       whileHover={{
-        scale: 1.07,
+        scale: 1.08,
         rotate: 0,
-        y: -32,
-        transition: { duration: 0.3, ease: "easeOut" },
+        y: -40,
+        transition: { duration: 0.4, ease: "circOut" },
       }}
       onClick={onClick}
-      className="group cursor-pointer select-none"
+      className="group cursor-pointer"
       style={{ transformOrigin: "center bottom" }}
     >
-      {/* ── Tray shell ── */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden transition-all duration-500"
         style={{
-          /* Rounded like a bakery tray — not too circular */
-          borderRadius: "18px",
-          /* Warm parchment border — golden like a pastry case frame */
+          borderRadius: "24px",
+          /* Baking Tray Shell: Gold/Brass thin border with deep depth */
           boxShadow: `
-            0 0 0 1.5px rgba(197,160,89,0.45),
-            0 0 0 4px rgba(255,255,255,0.06),
-            0 20px 50px rgba(0,0,0,0.45),
-            0 4px 12px rgba(0,0,0,0.3),
-            inset 0 1px 0 rgba(255,255,255,0.15)
+            0 0 0 1px rgba(217, 167, 74, 0.4), 
+            0 0 30px rgba(0, 0, 0, 0.4),
+            inset 0 0 40px rgba(0, 0, 0, 0.3)
           `,
-          aspectRatio: "3/4",
+          aspectRatio: "4/5",
         }}
       >
-        {/* Product image */}
         <Image
           src={cat.coverImage}
           alt={cat.name}
           fill
           sizes="(max-width: 768px) 50vw, 20vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-95"
+          className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 brightness-90 contrast-[1.05]"
           priority={index < 3}
         />
 
-        {/* Warm vignette at bottom */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(27,12,4,0.85) 0%, rgba(27,12,4,0.2) 45%, transparent 70%)",
-          }}
-        />
+        {/* Atmospheric Tint */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0602]/95 via-transparent to-transparent opacity-80" />
 
-        {/* Subtle top shine — "glass vitrine" effect */}
-        <div
-          className="absolute top-0 left-0 right-0 h-16 pointer-events-none opacity-30"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, transparent 100%)",
-          }}
-        />
-
-        {/* Emoji badge — top right corner */}
-        <div
-          className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full flex items-center justify-center text-base shadow-lg"
-          style={{
-            background: "rgba(0,0,0,0.35)",
-            backdropFilter: "blur(8px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-          }}
-        >
-          {cat.emoji}
-        </div>
-
-        {/* Bottom label — frosted glass "price tag" */}
-        <div className="absolute bottom-0 left-0 right-0 p-3.5">
-          <div
-            className="rounded-xl px-3 py-2.5"
-            style={{
-              background: "rgba(10,5,2,0.55)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            <p className="font-playfair font-black text-white text-sm leading-tight mb-0.5">
+        {/* Category Info - Modern Price Tag Aesthetic */}
+        <div className="absolute bottom-0 left-0 right-0 p-5">
+          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+            <h3 className="font-playfair font-black text-white text-base md:text-lg mb-1">
               {cat.name}
-            </p>
-            <p
-              className="text-[9px] font-black uppercase tracking-[0.2em]"
-              style={{ color: "#E8C87A" }}
-            >
-              {cat.images.length} ürün · keşfet
-            </p>
+            </h3>
+            <div className="flex items-center justify-between">
+              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-amber-400/80">
+                {cat.images.length} Ürün
+              </span>
+              <div className="w-6 h-[1px] bg-amber-400/30" />
+            </div>
           </div>
         </div>
+
+        {/* Hover Shine Effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-[1s] pointer-events-none" />
       </div>
     </motion.div>
   );

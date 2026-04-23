@@ -41,7 +41,7 @@ const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial =
         </span>
 
         {/* Product Image Wrapper */}
-        <div className="relative h-56 w-full mb-6 perspective-1000">
+        <div className="relative aspect-[4/3] w-full mb-6 perspective-1000">
           <motion.div
             whileHover={{ scale: 1.05, rotateY: 5, rotateX: -2 }}
             className="w-full h-full relative"
@@ -49,7 +49,7 @@ const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial =
             {/* Soft Glow */}
             <div className={`absolute inset-0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-20 ${isSpecial ? 'bg-accent' : 'bg-pistachio'}`} />
             
-            <div className={`w-full h-full relative rounded-2xl overflow-hidden border ${isSpecial ? 'border-accent/10' : 'border-black/5'} bg-white/40`}>
+            <div className={`w-full h-full relative rounded-2xl overflow-hidden border ${isSpecial ? 'border-accent/10' : 'border-black/5'} bg-white/40 shadow-inner`}>
               {imageUrl ? (
                 <Image 
                   src={imageUrl} 
