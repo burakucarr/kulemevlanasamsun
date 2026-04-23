@@ -17,7 +17,7 @@ const InstagramIcon = ({ size = 22 }: { size?: number }) => (
   </svg>
 );
 
-const PHONE = "905307738319";
+const PHONE = "905309351955";
 const WA_URL = `https://wa.me/${PHONE}?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum.`;
 const IG_URL = "https://instagram.com/kulemevlana";
 
@@ -29,7 +29,7 @@ export default function FloatingContact() {
       id: "whatsapp",
       href: WA_URL,
       label: "Sipariş Ver",
-      sublabel: "+90 530 773 83 19",
+      sublabel: "+90 530 935 19 55",
       icon: <WhatsAppIcon size={24} />,
       color: "#25D366",
       shadow: "rgba(37,211,102,0.45)",
