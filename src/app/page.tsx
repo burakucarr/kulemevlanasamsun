@@ -55,12 +55,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Innovative Feature Section */}
-      <section className="py-16 md:py-32 bg-white/40 border-y border-black/5">
-        <div className="container mx-auto px-4 md:px-6">
-          <ExplodedCake />
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="py-16 md:py-24 border-t border-black/5 text-center bg-background">
