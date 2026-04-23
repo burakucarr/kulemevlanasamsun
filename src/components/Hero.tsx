@@ -142,6 +142,16 @@ export default function Hero() {
           style={{ y: cardsLayer.y }}
           className="relative z-20 w-full px-6 pb-40 will-change-transform"
         >
+          {/* Mobile Scroll Indicator */}
+          <div className="flex md:hidden items-center justify-center gap-3 mb-6 opacity-40">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Kaydırın</span>
+            <motion.div
+              animate={{ x: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+              className="w-8 h-[1px] bg-white"
+            />
+          </div>
+
           <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-10 scrollbar-hide container mx-auto">
             {categories.map((cat, i) => (
               <div key={cat.id} className="flex-shrink-0 w-[200px] md:w-auto">
