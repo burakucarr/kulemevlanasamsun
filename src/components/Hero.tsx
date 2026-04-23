@@ -131,7 +131,7 @@ export default function Hero() {
           >
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
             <span className="text-white text-xs md:text-sm font-black tracking-widest uppercase">
-              Taze Ürün Saati: <span className="text-amber-300">08:30</span>
+              Her Gün <span className="text-amber-300">Taptaze</span>
             </span>
           </motion.div>
         </motion.div>
