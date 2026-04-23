@@ -135,13 +135,13 @@ export default function Hero() {
                 scale: { duration: 1, delay: 1.2 },
                 y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
               }}
-              className="absolute md:top-[-150px] md:right-0 bottom-[-550px] right-0 md:relative w-[140px] md:w-[300px] aspect-[9/16] rounded-[40px] md:rounded-[60px] overflow-hidden border border-white/20 shadow-2xl group"
+              className="absolute md:-top-40 md:-right-20 bottom-[-450px] right-4 w-[130px] md:w-[280px] aspect-[9/16] rounded-[40px] md:rounded-[60px] overflow-hidden border border-white/20 shadow-2xl group"
               style={{
-                boxShadow: "0 0 60px rgba(121, 147, 81, 0.3)",
+                boxShadow: "0 0 60px rgba(121, 147, 81, 0.4)",
               }}
             >
               {/* Video Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-pistachio/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-pistachio/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
               <video
                 src="/videos/reels.mp4"
@@ -149,11 +149,11 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                className="w-full h-full object-cover scale-105"
+                className="w-full h-full object-cover"
               />
 
-              {/* Glass Overlay for Text Readability if needed */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+              {/* Glass Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" />
             </motion.div>
           </div>
         </motion.div>
