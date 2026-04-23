@@ -107,12 +107,32 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.7 }}
             className="flex flex-wrap gap-4 justify-center"
           >
-            <button className="group px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest flex items-center gap-3 transition-all duration-500 shadow-[0_15px_40px_rgba(217,167,74,0.3)] hover:shadow-[0_20px_60px_rgba(217,167,74,0.5)] hover:scale-105 bg-gradient-to-br from-[#d9a74a] to-[#a07a30] text-white">
+            <a 
+              href="https://wa.me/905309351955?text=Merhaba%2C%20taze%20ürünlerinizden%20sipariş%20vermek%20istiyorum."
+              target="_blank"
+              className="group px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest flex items-center gap-3 transition-all duration-500 shadow-[0_15px_40px_rgba(217,167,74,0.3)] hover:shadow-[0_20px_60px_rgba(217,167,74,0.5)] hover:scale-105 bg-gradient-to-br from-[#d9a74a] to-[#a07a30] text-white"
+            >
               Siparişe Başla <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 transition-all duration-500">
+            </a>
+            <a 
+              href="#menu"
+              className="px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 transition-all duration-500"
+            >
               Menüyü Gör
-            </button>
+            </a>
+          </motion.div>
+
+          {/* Floating Freshness Badge */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0, rotate: -15 }}
+            animate={{ scale: 1, opacity: 1, rotate: -5 }}
+            transition={{ delay: 1.5, type: "spring" }}
+            className="mt-12 inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-3"
+          >
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <span className="text-white text-xs md:text-sm font-black tracking-widest uppercase">
+              Taze Ürün Saati: <span className="text-amber-300">08:30</span>
+            </span>
           </motion.div>
         </motion.div>
 
