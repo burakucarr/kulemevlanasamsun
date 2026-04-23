@@ -115,10 +115,10 @@ export default function Hero() {
               Siparişe Başla <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
-              href="#menu"
-              className="px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 transition-all duration-500"
+              href="#ozel-siparis"
+              className="px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all duration-500 shadow-[0_10px_30px_rgba(217,167,74,0.15)]"
             >
-              Menüyü Gör
+              Özel Tasarım Pasta
             </a>
           </motion.div>
 

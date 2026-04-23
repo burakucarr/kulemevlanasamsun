@@ -50,10 +50,10 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-semibold">
-          {['Menü', 'Pastalar', 'Eklerler', 'Hakkımızda'].map((item) => (
+          {['Menü', 'Pastalar', 'Eklerler', 'Özel Sipariş', 'Hakkımızda'].map((item) => (
             <Link 
               key={item} 
-              href={`#${item.toLowerCase()}`}
+              href={item === 'Özel Sipariş' ? '#ozel-siparis' : `#${item.toLowerCase()}`}
               className="text-primary/80 hover:text-accent transition-colors relative group"
             >
               {item}
@@ -123,10 +123,10 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-24 left-4 right-4 glass-card rounded-3xl p-6 md:hidden flex flex-col gap-6 items-center"
           >
-            {['Menü', 'Pastalar', 'Eklerler', 'Hakkımızda'].map((item) => (
+            {['Menü', 'Pastalar', 'Eklerler', 'Özel Sipariş', 'Hakkımızda'].map((item) => (
               <Link 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
+                href={item === 'Özel Sipariş' ? '#ozel-siparis' : `#${item.toLowerCase()}`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-xl font-outfit font-semibold text-primary hover:text-accent transition-colors"
               >
