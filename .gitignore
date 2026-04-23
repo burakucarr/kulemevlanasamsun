@@ -38,6 +38,5 @@ next-env.d.ts
 # User specific
 assets_backup/
 public/videos/
-public/images/
 # Large files are ignored to allow successful GitHub upload.
 # You should optimize these images (e.g., resize to < 1MB) before adding them back.

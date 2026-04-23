@@ -65,19 +65,6 @@ export default function Hero() {
           style={{ y: header.y }}
           className="relative z-20 text-center pt-40 pb-16 px-6 container mx-auto"
         >
-          {/* Antigravity Badge */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 px-6 py-2 rounded-full mb-10 border border-white/10 bg-white/5 backdrop-blur-xl"
-          >
-            <span className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_12px_#f59e0b] animate-pulse" />
-            <span className="text-white/70 text-[10px] md:text-xs font-black tracking-[0.5em] uppercase">
-              Butik Lezzet Deneyimi
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -97,10 +84,11 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.5 }}
-            className="text-white/50 text-lg md:text-xl max-w-xl mx-auto font-medium leading-relaxed mb-12"
+            className="text-white/80 text-lg md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed mb-12"
           >
-            Geleneksel Samsun lezzetleri, modern bir yerçekimsiz vitrinde hayat buluyor. 
-            Her parça birer sanat eseri, her lokma bir keşif.
+            Fırınımızdan yükselen o sıcak koku, yarım asırlık ustalığın eseridir. 
+            Her an taptaze çıkan çıtır lezzetlerden el yapımı pastalara kadar, 
+            Samsun'un en köklü lezzet durağına hoş geldiniz.
           </motion.p>
 
           <motion.div
