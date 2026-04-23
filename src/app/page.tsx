@@ -8,6 +8,8 @@ import ExplodedCake from "@/components/ExplodedCake";
 import ReelsSection from "@/components/ReelsSection";
 import FloatingContact from "@/components/FloatingContact";
 
+import CustomOrderForm from "@/components/CustomOrderForm";
+
 const featuredProducts = [
   { id: 1, title: "Özel Meyveli Pasta", price: "450", category: "Pasta", imageUrl: "/images/products/pastalar.webp", delay: 0.1 },
   { id: 2, title: "Midye Baklava", price: "520", category: "Şerbetli", imageUrl: "/images/products/baklava.webp", delay: 0.2, isSpecial: true },
@@ -81,6 +83,8 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Custom Order Form Section */}
+      <CustomOrderForm />
 
       {/* Testimonials Section */}
       <section className="py-24 md:py-40 bg-[#FDFDF5]">
