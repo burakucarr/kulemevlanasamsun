@@ -130,6 +130,7 @@ export default function CustomOrderForm() {
                     <input
                       required
                       type="date"
+                      min={new Date().toISOString().split('T')[0]}
                       className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     />
