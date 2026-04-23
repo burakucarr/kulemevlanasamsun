@@ -25,33 +25,56 @@ export default function Home() {
       <div className="h-24 bg-gradient-to-b from-[#1A0C04] to-[#FDFDF5]" />
 
       {/* Featured Products Gallery */}
-      <section id="menu" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-4 md:gap-8">
-          <div className="max-w-2xl">
-            <h2 className="font-playfair font-black text-4xl md:text-6xl lg:text-7xl text-primary mb-4 md:mb-8 leading-tight">
-              HAFTANIN <span className="text-accent italic">GÖZDELERİ</span>
+      <section id="menu" className="py-16 md:py-32 container mx-auto px-4 md:px-6 relative">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-4 md:gap-8">
+          <div className="max-w-3xl">
+            <h2 className="font-playfair font-black text-5xl md:text-7xl lg:text-8xl text-primary mb-6 md:mb-10 leading-tight">
+              FIRINDAN <span className="text-accent italic">TAZE</span> <br /> HİKAYELER
             </h2>
-            <p className="text-primary/60 text-base md:text-xl font-medium max-w-xl">
-              Kule Mevlana mutfağında her gün taze meyveler ve organik malzemelerle hazırlanan, günün en tatlı anları.
+            <p className="text-primary/60 text-lg md:text-2xl font-medium max-w-xl">
+              Kule Mevlana mutfağında her sabah aşkla hazırlanan, 
+              o sıcak fırın kokusunun ardındaki gerçek emek ve tutku.
             </p>
           </div>
-          <button className="text-accent font-bold border-b-2 border-accent/20 hover:border-accent transition-all pb-2 text-base md:text-lg flex-shrink-0">
+          <button className="text-accent font-bold border-b-2 border-accent/20 hover:border-accent transition-all pb-2 text-lg md:text-xl flex-shrink-0">
             Tüm Menüyü Keşfet
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
-          {featuredProducts.map((product) => (
-            <FloatingCard 
-              key={product.id}
-              title={product.title}
-              price={product.price}
-              category={product.category}
-              imageUrl={product.imageUrl}
-              delay={product.delay}
-              isSpecial={product.isSpecial}
-            />
-          ))}
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 flex-grow">
+            {featuredProducts.map((product) => (
+              <FloatingCard 
+                key={product.id}
+                title={product.title}
+                price={product.price}
+                category={product.category}
+                imageUrl={product.imageUrl}
+                delay={product.delay}
+                isSpecial={product.isSpecial}
+              />
+            ))}
+          </div>
+
+          {/* Floating Video Portal Side */}
+          <div className="w-full lg:w-[400px] sticky top-32">
+            <div className="relative aspect-[9/16] w-full rounded-[60px] overflow-hidden border border-black/5 shadow-2xl group">
+               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
+               <video
+                src="/videos/reels.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
+              />
+              <div className="absolute bottom-10 left-0 right-0 text-center z-20 px-6">
+                <span className="text-white/60 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Canlı Mutfak</span>
+                <h4 className="text-white font-playfair font-black text-2xl italic">Şu An Fırında...</h4>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
