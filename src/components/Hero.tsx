@@ -26,6 +26,7 @@ function useParallax(offset: number) {
 }
 
 export default function Hero() {
+  const { scrollY } = useScroll();
   const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(
     null
   );
