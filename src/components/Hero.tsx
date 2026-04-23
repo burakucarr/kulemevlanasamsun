@@ -115,6 +115,48 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        {/* ── Layer 1.5 · Floating Video Portal ── */}
+        <motion.div
+          style={{ y: useTransform(scrollY, [0, 1000], [0, -300]) }}
+          className="relative z-30 pointer-events-none md:pointer-events-auto"
+        >
+          <div className="container mx-auto px-6 relative h-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: 50 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                x: 0,
+                y: [0, -20, 0] 
+              }}
+              transition={{ 
+                opacity: { duration: 1, delay: 1.2 },
+                scale: { duration: 1, delay: 1.2 },
+                y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="absolute md:top-[-150px] md:right-0 bottom-[-550px] right-0 md:relative w-[140px] md:w-[300px] aspect-[9/16] rounded-[40px] md:rounded-[60px] overflow-hidden border border-white/20 shadow-2xl group"
+              style={{
+                boxShadow: "0 0 60px rgba(121, 147, 81, 0.3)",
+              }}
+            >
+              {/* Video Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-pistachio/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              <video
+                src="/videos/reels.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover scale-105"
+              />
+
+              {/* Glass Overlay for Text Readability if needed */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* ── Layer 2 · Fırın Tepsisi (Baking Tray) Cards ── */}
         <motion.div
           ref={cardsLayer.ref}
