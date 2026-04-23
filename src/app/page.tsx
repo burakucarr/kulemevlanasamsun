@@ -93,10 +93,10 @@ export default function Home() {
                 Taze Ürün Saati: 08:30
               </p>
               <a 
-                href="tel:+905307738319" 
+                href="tel:+905309351955" 
                 className="inline-block text-primary font-black text-lg md:text-xl mt-2 hover:text-accent transition-colors"
               >
-                +90 530 773 83 19
+                +90 530 935 19 55
               </a>
             </div>
           </div>

@@ -66,7 +66,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           {/* WhatsApp */}
           <a
-            href="https://wa.me/905307738319?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum."
+            href="https://wa.me/905309351955?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum."
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
