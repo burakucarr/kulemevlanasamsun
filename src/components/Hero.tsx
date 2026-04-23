@@ -84,11 +84,11 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.5 }}
-            className="text-white/80 text-lg md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed mb-12"
+            className="text-white/90 text-lg md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed mb-12"
           >
-            Fırınımızdan yükselen o sıcak koku, yarım asırlık ustalığın eseridir. 
-            Her an taptaze çıkan çıtır lezzetlerden el yapımı pastalara kadar, 
-            Samsun'un en köklü lezzet durağına hoş geldiniz.
+            Hayallerinizdeki pasta, ustalığımızla hayat buluyor. 
+            Kişiye özel butik pasta tasarımlarımız, eşsiz tatlı çeşitlerimiz ve 
+            fırınımızdan her an çıkan taptaze lezzetlerle gününüzü tatlandırıyoruz.
           </motion.p>
 
           <motion.div
