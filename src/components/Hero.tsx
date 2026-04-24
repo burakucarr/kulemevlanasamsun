@@ -118,7 +118,7 @@ export default function Hero({ onCategoryClick }: HeroProps) {
             className="flex flex-wrap gap-4 justify-center"
           >
             <a 
-              href="https://wa.me/905309351955?text=Merhaba%2C%20taze%20ürünlerinizden%20sipariş%20vermek%20istiyorum."
+              href="https://wa.me/905309351955?text=Merhaba%20Kule%20Mevlana%2C%20web%20sitenizden%20ula%C5%9F%C4%B1yorum.%20Sipari%C5%9F%20olu%C5%9Fturmak%20istiyorum."
               target="_blank"
               className="group px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest flex items-center gap-3 transition-all duration-500 shadow-[0_15px_40px_rgba(217,167,74,0.3)] hover:shadow-[0_20px_60px_rgba(217,167,74,0.5)] hover:scale-105 bg-gradient-to-br from-[#d9a74a] to-[#a07a30] text-white"
             >
@@ -163,14 +163,21 @@ export default function Hero({ onCategoryClick }: HeroProps) {
           style={{ y: cardsLayer.y }}
           className="relative z-20 w-full px-6 pb-40 will-change-transform"
         >
-          {/* Mobile Scroll Indicator */}
-          <div className="flex md:hidden items-center justify-center gap-3 mb-6 opacity-40">
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Kaydırın</span>
-            <motion.div
-              animate={{ x: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-              className="w-8 h-[1px] bg-white"
-            />
+          {/* Mobile Scroll Indicator - Enhanced */}
+          <div className="flex md:hidden items-center justify-center gap-4 mb-8">
+            <motion.div 
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
+            >
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Kaydırın</span>
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+              >
+                <ArrowRight size={14} className="text-accent" />
+              </motion.div>
+            </motion.div>
           </div>
 
           <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-10 scrollbar-hide container mx-auto">

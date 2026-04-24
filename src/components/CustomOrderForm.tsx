@@ -10,7 +10,7 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
     name: "",
     phone: "",
     date: "",
-    people: "10-15",
+    people: "4-6",
     flavor: "Çikolatalı & Fıstıklı",
     eventType: "Doğum Günü",
     shape: "Yuvarlak",
@@ -161,6 +161,9 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                           className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
                           onChange={(e) => setFormData({ ...formData, people: e.target.value })}
                         >
+                          <option>4-6 Kişilik</option>
+                          <option>6-8 Kişilik</option>
+                          <option>8-10 Kişilik</option>
                           <option>10-15 Kişilik</option>
                           <option>20-30 Kişilik</option>
                           <option>40-50 Kişilik</option>

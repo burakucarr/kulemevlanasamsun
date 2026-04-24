@@ -175,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer id="hakkimizda" className="py-24 md:py-32 border-t border-black/5 bg-[#FDFDF5]">
+      <footer id="hakkimizda" className="py-24 md:py-32 border-t border-black/5 bg-[#FDFDF5] scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-16 md:mb-24">
             <h3 className="font-playfair font-black text-4xl md:text-6xl text-primary mb-4 tracking-tighter">KULE MEVLANA</h3>
@@ -296,7 +296,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center gap-10 mb-12 border-t border-black/5 pt-12">
+          <div className="hidden md:flex justify-center gap-10 mb-12 border-t border-black/5 pt-12">
             <a href="https://instagram.com/kulemevlana" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold">Instagram</a>
             <a href="https://www.yemeksepeti.com/restaurant/kule-mevlana" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold">Yemeksepeti</a>
             <a href="https://getir.com/yemek/restoran/kule-mevlana-samsun" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold">Getir</a>

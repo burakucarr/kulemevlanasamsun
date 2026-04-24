@@ -61,18 +61,21 @@ const Navbar = () => {
               { name: 'Özel Sipariş', id: 'ozel-siparis' },
               { name: 'Hakkımızda', id: 'hakkimizda' }
             ].map((item) => (
-              <Link 
+              <button 
                 key={item.id} 
-                href={`#${item.id}`}
-                className="text-primary/80 hover:text-accent transition-colors relative group"
+                onClick={() => {
+                  const el = document.getElementById(item.id);
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-primary/80 hover:text-accent transition-colors relative group text-sm font-semibold"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
-              </Link>
+              </button>
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-4 border-l border-black/10 pl-8 ml-2">
+          <div className="hidden md:flex items-center gap-4 border-l border-black/10 pl-8 ml-2">
             <div className="flex flex-col text-right">
               <a 
                 href="https://www.google.com/maps/dir/?api=1&destination=Beypınar+Mah+Elbistan+Bulv+No+24+A+Atakum+Samsun" 
@@ -119,14 +122,17 @@ const Navbar = () => {
               { name: 'Özel Sipariş', id: 'ozel-siparis' },
               { name: 'Hakkımızda', id: 'hakkimizda' }
             ].map((item) => (
-              <Link 
+              <button 
                 key={item.id} 
-                href={`#${item.id}`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  const el = document.getElementById(item.id);
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  setIsMobileMenuOpen(false);
+                }}
                 className="text-xl font-outfit font-semibold text-primary hover:text-accent transition-colors"
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
           </motion.div>
         )}
