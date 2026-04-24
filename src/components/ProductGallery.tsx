@@ -76,7 +76,7 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md"
           onClick={() => lightboxIndex !== null ? setLightboxIndex(null) : onClose()}
         />
 
@@ -87,13 +87,13 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-x-0 bottom-0 top-[5vh] z-50 flex flex-col rounded-t-[2.5rem] overflow-hidden"
+          className="fixed inset-x-0 bottom-0 top-0 md:top-[5vh] z-[101] flex flex-col md:rounded-t-[2.5rem] overflow-hidden"
           style={{ background: "#FDFDF5" }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div
-            className="relative flex items-center justify-between px-6 py-5 border-b border-black/5"
+            className="relative flex items-center justify-between px-6 py-5 pt-12 md:pt-5 border-b border-black/5"
             style={{ background: `linear-gradient(135deg, ${category.accentColor}, transparent)` }}
           >
             <div className="flex items-center gap-4">
@@ -118,10 +118,14 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
             <motion.button
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
-              onClick={onClose}
-              className="w-10 h-10 rounded-full bg-white/80 border border-black/10 flex items-center justify-center shadow text-primary/60 hover:text-primary transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center shadow-lg text-primary hover:text-accent transition-all cursor-pointer z-[100] active:bg-gray-100"
+              aria-label="Kapat"
             >
-              <X size={18} />
+              <X size={24} strokeWidth={2.5} />
             </motion.button>
           </div>
 
@@ -170,7 +174,7 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[60] bg-black/95"
+                className="fixed inset-0 z-[150] bg-black/95"
                 onClick={() => setLightboxIndex(null)}
               />
               <motion.div
@@ -179,7 +183,7 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="fixed inset-0 z-[61] flex items-center justify-center p-4 md:p-16"
+                className="fixed inset-0 z-[151] flex items-center justify-center p-4 md:p-16"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="relative w-full h-full max-w-5xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl">
@@ -211,10 +215,14 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick={() => setLightboxIndex(null)}
-                  className="absolute top-6 right-6 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex(null);
+                  }}
+                  className="absolute top-6 right-6 w-14 h-14 bg-white/20 hover:bg-white/30 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center text-white transition-all z-[100] cursor-pointer active:scale-90"
+                  aria-label="Resmi Kapat"
                 >
-                  <X size={18} />
+                  <X size={28} strokeWidth={2.5} />
                 </motion.button>
 
                 {/* Prev / Next */}

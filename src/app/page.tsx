@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FloatingCard from "@/components/FloatingCard";
@@ -99,6 +100,7 @@ export default function Home() {
             <div className="relative aspect-[9/16] w-full rounded-[60px] overflow-hidden border border-black/5 shadow-2xl group">
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
                <video
+                id="reels-video"
                 src="/videos/reels.mp4"
                 autoPlay
                 muted
@@ -106,6 +108,20 @@ export default function Home() {
                 playsInline
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
               />
+              
+              {/* Sound Toggle Button */}
+              <button 
+                onClick={() => {
+                  const v = document.getElementById('reels-video') as HTMLVideoElement;
+                  if (v) v.muted = !v.muted;
+                }}
+                className="absolute top-8 right-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-full text-white hover:bg-white/20 transition-all"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
+                </svg>
+              </button>
+
               <div className="absolute bottom-10 left-0 right-0 text-center z-20 px-6">
                 <span className="text-white/60 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Canlı Mutfak</span>
                 <h4 className="text-white font-playfair font-black text-2xl italic">Şu An Fırında...</h4>
@@ -159,55 +175,135 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer id="hakkimizda" className="py-16 md:py-24 border-t border-black/5 text-center bg-background">
-        <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h3 className="font-playfair font-black text-3xl md:text-4xl text-primary mb-4 md:mb-6 tracking-tighter">KULE MEVLANA</h3>
-          <p className="text-secondary text-sm font-black tracking-[0.4em] uppercase mb-4">
-            CAFE • FIRIN • PASTA
-          </p>
-          <p className="text-primary/70 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 md:mb-10">
-            İşletmeci: <span className="text-primary font-black">EYÜP CAN YİĞİT</span>
-          </p>
-          
-          {/* Location & Contact Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-16 text-primary/80">
-            <div className="space-y-3 md:space-y-4">
-              <h4 className="font-bold text-base md:text-lg text-primary uppercase tracking-widest">Bize Ulaşın</h4>
-              <p className="font-medium leading-relaxed text-sm md:text-base">
-                Atakum, Alaçam Caddesi, No: 218A <br />
-                Samsun, Türkiye
-              </p>
-              <a 
-                href="https://maps.google.com/?q=Kule+Mevlana+Samsun" 
-                target="_blank" 
-                className="inline-block text-accent font-bold border-b border-accent/30 hover:border-accent transition-all pb-0.5 mt-2 text-sm md:text-base"
-              >
-                Haritada Görüntüle
-              </a>
+      <footer id="hakkimizda" className="py-24 md:py-32 border-t border-black/5 bg-[#FDFDF5]">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-16 md:mb-24">
+            <h3 className="font-playfair font-black text-4xl md:text-6xl text-primary mb-4 tracking-tighter">KULE MEVLANA</h3>
+            <p className="text-secondary text-sm font-black tracking-[0.4em] uppercase mb-4">
+              CAFE • FIRIN • PASTA
+            </p>
+            <p className="text-primary/70 text-[10px] font-bold tracking-[0.2em] uppercase mb-12">
+              İşletmeci: <span className="text-primary font-black">EYÜP CAN YİĞİT</span>
+            </p>
+
+            {/* Integrated About Us Block */}
+            <div className="relative rounded-[3rem] overflow-hidden min-h-[500px] flex items-center mb-24 shadow-2xl">
+              <div className="absolute inset-0 z-0">
+                <Image 
+                  src="/images/about-team.jpg"
+                  alt="Kule Mevlana - Samsun pastane ve taze fırın lezzetleri"
+                  fill
+                  className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+              </div>
+
+              <div className="relative z-10 text-left max-w-2xl p-8 md:p-16">
+                <div className="space-y-6 text-white/90 text-base md:text-lg font-medium leading-relaxed mb-10">
+                  <p>
+                    Kule Mevlana, <strong>Samsun pastane</strong> kültürünün yarım asırlık lezzet mirasıyla, modern ve yaratıcı bir vizyonu birleştiren bir işletmedir.
+                  </p>
+                  <p>
+                    Her sabah <strong>taze fırın</strong> ürünlerimiz, kişiye özel butik pasta tasarımları ve geleneksel lezzetleriyle Samsun halkının güven duyduğu adıyız.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-white/20 pt-8">
+                  <div className="space-y-2">
+                    <h4 className="text-amber-400 font-black tracking-widest text-xs uppercase">Misyonumuz</h4>
+                    <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                      Kaliteden taviz vermeden, her müşteriye taze, sağlıklı ve lezzetli bir deneyim sunmak.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-amber-400 font-black tracking-widest text-xs uppercase">Vizyonumuz</h4>
+                    <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                      Türkiye'nin en seçkin pastane ve fırını olmak.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="space-y-3 md:space-y-4">
-              <h4 className="font-bold text-base md:text-lg text-primary uppercase tracking-widest">Çalışma Saatleri</h4>
-              <p className="font-medium text-sm md:text-base">
-                Her gün: 07:00 — 23:00 <br />
-                Taze Ürün Saati: <span className="text-accent font-bold">08:30</span>
-              </p>
+          </div>
+          
+          {/* Location & Branches */}
+          <div className="mb-20">
+            <h4 className="text-center font-bold text-sm text-secondary uppercase tracking-[0.3em] mb-12">Şubelerimiz</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-primary/80 text-center">
+              <div className="space-y-4">
+                <h5 className="font-black text-xl text-primary">BALAÇ ŞUBESİ(KULE)</h5>
+                <p className="font-medium leading-relaxed">
+                  Beypınar Mah. Elbistan Bulv. <br />
+                  No: 24/A, Atakum / Samsun
+                </p>
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Beypınar+Mah+Elbistan+Bulv+No+24+A+Atakum+Samsun" 
+                  target="_blank" 
+                  className="inline-block text-accent font-bold border-b border-accent/20 hover:border-accent transition-all pb-0.5 text-sm"
+                >
+                  Yol Tarifi Al
+                </a>
+              </div>
+              <div className="space-y-4">
+                <h5 className="font-black text-xl text-primary">TÜRKİŞ ŞUBESİ</h5>
+                <p className="font-medium leading-relaxed">
+                  Mevlana Mah. 736. Sk. <br />
+                  No: 2, Atakum / Samsun
+                </p>
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Mevlana+Mah+736+Sokak+No+2+Atakum+Samsun" 
+                  target="_blank" 
+                  className="inline-block text-accent font-bold border-b border-accent/20 hover:border-accent transition-all pb-0.5 text-sm"
+                >
+                  Yol Tarifi Al
+                </a>
+              </div>
+              <div className="space-y-4">
+                <h5 className="font-black text-xl text-primary">ÖMÜREVLERİ ŞUBESİ</h5>
+                <p className="font-medium leading-relaxed">
+                  Cumhuriyet Mah. İsmet İnönü Bulv. <br />
+                  No: 306, Atakum / Samsun
+                </p>
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Cumhuriyet+Mah+İsmet+İnönü+Bulv+No+306+Atakum+Samsun" 
+                  target="_blank" 
+                  className="inline-block text-accent font-bold border-b border-accent/20 hover:border-accent transition-all pb-0.5 text-sm"
+                >
+                  Yol Tarifi Al
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 text-center border-t border-black/5 pt-16">
+            <div className="space-y-4">
+              <h4 className="font-bold text-base text-primary uppercase tracking-widest">İletişim</h4>
               <a 
                 href="tel:+905309351955" 
-                className="inline-block text-primary font-black text-lg md:text-xl mt-2 hover:text-accent transition-colors"
+                className="inline-block text-primary font-black text-3xl md:text-4xl hover:text-accent transition-colors"
               >
-                +90 530 935 19 55
+                0530 935 19 55
               </a>
+              <p className="text-xs font-medium opacity-50 italic">Sipariş ve Rezervasyon için arayabilirsiniz.</p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="font-bold text-base text-primary uppercase tracking-widest">Çalışma Saatleri</h4>
+              <p className="font-medium text-lg">
+                Her gün: 07:00 — 23:00 <br />
+                <span className="text-accent font-black">Gün boyu fırından taze ve sıcak...</span>
+              </p>
             </div>
           </div>
 
-          <div className="flex justify-center gap-6 md:gap-10 mb-10 md:mb-12">
-            <a href="https://instagram.com/kulemevlana" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold text-sm md:text-base">Instagram</a>
-            <a href="https://www.yemeksepeti.com/restaurant/kule-mevlana" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold text-sm md:text-base">Yemeksepeti</a>
-            <a href="https://getir.com/yemek/restoran/kule-mevlana-samsun" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold text-sm md:text-base">Getir</a>
+          <div className="flex justify-center gap-10 mb-12 border-t border-black/5 pt-12">
+            <a href="https://instagram.com/kulemevlana" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold">Instagram</a>
+            <a href="https://www.yemeksepeti.com/restaurant/kule-mevlana" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold">Yemeksepeti</a>
+            <a href="https://getir.com/yemek/restoran/kule-mevlana-samsun" target="_blank" className="text-primary/60 hover:text-accent transition-colors font-bold">Getir</a>
           </div>
 
-          <div className="pt-8 md:pt-12 border-t border-black/5">
-            <p className="text-primary/20 text-[9px] md:text-[10px] font-black tracking-[0.4em] md:tracking-[0.5em] uppercase text-center">
+          <div className="pt-12 border-t border-black/5">
+            <p className="text-primary/20 text-[10px] font-black tracking-[0.5em] uppercase text-center">
               © 2026 KULE MEVLANA | TÜM HAKLARI SAKLIDIR
             </p>
           </div>

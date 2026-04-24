@@ -51,31 +51,51 @@ const Navbar = () => {
           </div>
         </button>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-semibold">
-          {[
-            { name: 'Menü', id: 'menu' },
-            { name: 'Pastalar', id: 'pastalar' },
-            { name: 'Eklerler', id: 'eklerler' },
-            { name: 'Özel Sipariş', id: 'ozel-siparis' },
-            { name: 'Hakkımızda', id: 'hakkimizda' }
-          ].map((item) => (
-            <Link 
-              key={item.id} 
-              href={`#${item.id}`}
-              className="text-primary/80 hover:text-accent transition-colors relative group"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
-            </Link>
-          ))}
+        {/* Desktop Menu & Contact Info */}
+        <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-8 text-sm font-semibold">
+            {[
+              { name: 'Menü', id: 'menu' },
+              { name: 'Pastalar', id: 'pastalar' },
+              { name: 'Eklerler', id: 'eklerler' },
+              { name: 'Özel Sipariş', id: 'ozel-siparis' },
+              { name: 'Hakkımızda', id: 'hakkimizda' }
+            ].map((item) => (
+              <Link 
+                key={item.id} 
+                href={`#${item.id}`}
+                className="text-primary/80 hover:text-accent transition-colors relative group"
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center gap-4 border-l border-black/10 pl-8 ml-2">
+            <div className="flex flex-col text-right">
+              <a 
+                href="https://www.google.com/maps/dir/?api=1&destination=Beypınar+Mah+Elbistan+Bulv+No+24+A+Atakum+Samsun" 
+                target="_blank"
+                className="group flex flex-col items-end"
+              >
+                <span className="text-[7px] font-black text-accent uppercase tracking-[0.2em] leading-none mb-1 opacity-0 group-hover:opacity-100 transition-all">KONUM İÇİN TIKLAYINIZ</span>
+                <span className="text-[9px] font-black text-secondary uppercase tracking-[0.1em] leading-none mb-1 group-hover:text-accent transition-colors">BEYPINAR MAH. ELBİSTAN BULV.</span>
+              </a>
+              <a 
+                href="tel:+905309351955" 
+                className="text-xs font-black text-primary hover:text-accent transition-colors"
+              >
+                0530 935 19 55
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* Icons */}
-        <div className="flex items-center gap-4">
-
+        {/* Mobile Toggle */}
+        <div className="md:hidden flex items-center">
           <button 
-            className="md:hidden text-white p-1"
+            className="text-primary p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

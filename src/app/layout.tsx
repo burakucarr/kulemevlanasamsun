@@ -22,7 +22,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Kule Mevlana Samsun | Butik Pasta, Fırın & Cafe - Atakum",
   description: "Atakum'un en sevilen butik pastanesi. Samsun'da kişiye özel pasta tasarımı, günlük taze ekler, sıcak fırın ürünleri ve eşsiz kahve deneyimi Kule Mevlana'da.",
-  keywords: "Samsun butik pasta, Atakum pastane, Samsun en iyi pasta, Atakum fırın, kişiye özel pasta Samsun, Kule Mevlana Atakum, Samsun cafe fırın",
+  keywords: "Samsun butik pasta, Atakum pastane, Samsun en iyi pasta, Atakum fırın, kişiye özel pasta Samsun, Kule Mevlana Atakum, Samsun cafe fırın, Samsun doğum günü pastası, Atakum kahvaltı, Samsun ekler sipariş, Atakum kurabiye, Samsun nişan pastası, Atakum tatlıcı, Samsun fırın ürünleri, butik çikolata Samsun, Kule Mevlana cafe, Atakum pasta siparişi, Samsun özel tasarım pasta, Atakum artisan fırın, Samsun pasta fiyatları",
   openGraph: {
     title: "Kule Mevlana Samsun | Butik Pasta & Fırın",
     description: "Samsun Atakum'da yarım asırlık lezzet mirası. Taze, organik ve kişiye özel butik lezzetler.",

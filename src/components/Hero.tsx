@@ -139,7 +139,7 @@ export default function Hero({ onCategoryClick }: HeroProps) {
             transition={{ delay: 1.5, type: "spring" }}
             className="mt-12 inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-3"
           >
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+
             <div className="relative h-6 flex items-center overflow-hidden min-w-[200px]">
               <AnimatePresence mode="popLayout">
                 <motion.span
