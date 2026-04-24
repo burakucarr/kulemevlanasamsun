@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+import Script from "next/script";
 import JsonLd from "@/components/JsonLd";
 
 const inter = Inter({
@@ -20,6 +21,10 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://kulemevlanasamsun.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   title: "Kule Mevlana Samsun | Butik Pasta, Fırın & Cafe - Atakum",
   description: "Atakum'un en sevilen butik pastanesi. Samsun'da kişiye özel pasta tasarımı, günlük taze ekler, sıcak fırın ürünleri ve eşsiz kahve deneyimi Kule Mevlana'da.",
   keywords: "Samsun butik pasta, Atakum pastane, Samsun en iyi pasta, Atakum fırın, kişiye özel pasta Samsun, Kule Mevlana Atakum, Samsun cafe fırın, Samsun doğum günü pastası, Atakum kahvaltı, Samsun ekler sipariş, Atakum kurabiye, Samsun nişan pastası, Atakum tatlıcı, Samsun fırın ürünleri, butik çikolata Samsun, Kule Mevlana cafe, Atakum pasta siparişi, Samsun özel tasarım pasta, Atakum artisan fırın, Samsun pasta fiyatları",
@@ -61,6 +66,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className={`${inter.variable} ${outfit.variable} ${playfair.variable} antialiased`}>
+      <head>
+        {/* Google Analytics - Placeholder ID */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </head>
       <body className="font-inter bg-background text-foreground min-h-screen">
         <JsonLd />
         {children}

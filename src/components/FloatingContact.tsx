@@ -28,7 +28,7 @@ export default function FloatingContact() {
     {
       id: "whatsapp",
       href: WA_URL,
-      label: "Sipariş Ver",
+      label: "Canlı Destek & Sipariş",
       sublabel: "+90 530 935 19 55",
       icon: <WhatsAppIcon size={24} />,
       color: "#25D366",

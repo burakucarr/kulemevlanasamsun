@@ -9,6 +9,7 @@ import Hero from "@/components/Hero";
 import FloatingCard from "@/components/FloatingCard";
 import FloatingContact from "@/components/FloatingContact";
 import CustomOrderForm from "@/components/CustomOrderForm";
+import FAQ from "@/components/FAQ";
 import { categories } from "@/data/products";
 import type { ProductCategory } from "@/data/products";
 
@@ -26,6 +27,8 @@ const featuredProducts = [
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(null);
 
+  const [isMuted, setIsMuted] = useState(true);
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     if ('scrollRestoration' in history) {
@@ -36,6 +39,14 @@ export default function Home() {
   const handleOpenOzelPasta = () => {
     const ozelPasta = categories.find(c => c.id === 'ozel-pastalar');
     if (ozelPasta) setActiveCategory(ozelPasta);
+  };
+
+  const toggleMute = () => {
+    const v = document.getElementById('reels-video') as HTMLVideoElement;
+    if (v) {
+      v.muted = !v.muted;
+      setIsMuted(v.muted);
+    }
   };
 
   return (
@@ -109,15 +120,18 @@ export default function Home() {
               
               {/* Sound Toggle Button */}
               <button 
-                onClick={() => {
-                  const v = document.getElementById('reels-video') as HTMLVideoElement;
-                  if (v) v.muted = !v.muted;
-                }}
-                className="absolute top-8 right-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-full text-white hover:bg-white/20 transition-all"
+                onClick={toggleMute}
+                className="absolute top-8 right-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-full text-white hover:bg-white/20 transition-all flex items-center justify-center"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
-                </svg>
+                {isMuted ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
+                  </svg>
+                )}
               </button>
 
               <div className="absolute bottom-10 left-0 right-0 text-center z-20 px-6">
@@ -171,6 +185,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* Footer */}
       <footer id="hakkimizda" className="py-24 md:py-32 border-t border-black/5 bg-[#FDFDF5] scroll-mt-24">

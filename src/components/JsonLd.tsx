@@ -33,6 +33,28 @@ export default function JsonLd() {
       "opens": "07:00",
       "closes": "23:00"
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "124"
+    },
+    "subOrganization": [
+      {
+        "@type": "Bakery",
+        "name": "Kule Mevlana Balaç Şubesi",
+        "address": "Beypınar Mah. Elbistan Bulv. No: 24/A, Atakum / Samsun"
+      },
+      {
+        "@type": "Bakery",
+        "name": "Kule Mevlana Türkiş Şubesi",
+        "address": "Mevlana Mah. 736. Sk. No: 2, Atakum / Samsun"
+      },
+      {
+        "@type": "Bakery",
+        "name": "Kule Mevlana Ömürevleri Şubesi",
+        "address": "Cumhuriyet Mah. İsmet İnönü Bulv. No: 306, Atakum / Samsun"
+      }
+    ],
     "hasMenu": "https://kulemevlanasamsun.vercel.app/#menu",
     "sameAs": [
       "https://instagram.com/kulemevlana",
