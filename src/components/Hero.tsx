@@ -283,16 +283,28 @@ function TrayCard({ cat, index, onClick }: TrayCardProps) {
 
         {/* Category Info - Modern Price Tag Aesthetic */}
         <div className="absolute bottom-0 left-0 right-0 p-5">
-          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-            <h3 className="font-playfair font-black text-white text-base md:text-lg mb-1">
+          <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-4 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 group-hover:border-amber-400/30">
+            <h3 className="font-playfair font-black text-white text-base md:text-lg mb-1 flex items-center justify-between">
               {cat.name}
+              <ArrowRight size={14} className="text-amber-400 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
             </h3>
             <div className="flex items-center justify-between">
               <span className="text-[9px] font-black uppercase tracking-[0.3em] text-amber-400/80">
                 {cat.images.length} Ürün
               </span>
-              <div className="w-6 h-[1px] bg-amber-400/30" />
+              <span className="text-[8px] font-bold text-white/40 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                KEŞFET
+              </span>
             </div>
+          </div>
+        </div>
+
+        {/* Centered Discover Button Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100 pointer-events-none">
+          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-2.5 shadow-2xl">
+            <span className="text-white font-black text-[10px] uppercase tracking-[0.3em] whitespace-nowrap">
+              Görüntüle
+            </span>
           </div>
         </div>
 

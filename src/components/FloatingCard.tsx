@@ -12,16 +12,18 @@ interface FloatingCardProps {
   imageUrl: string;
   delay?: number;
   isSpecial?: boolean;
+  onClick?: () => void;
 }
 
-const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial = false }: FloatingCardProps) => {
+const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial = false, onClick }: FloatingCardProps) => {
   return (
     <motion.div
       initial={{ y: 50, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, delay: delay }}
       viewport={{ once: true }}
-      className="group relative"
+      className="group relative cursor-pointer"
+      onClick={onClick}
     >
       <motion.div
         animate={{
@@ -36,9 +38,14 @@ const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial =
         className="glass-card rounded-[2.5rem] p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 group"
       >
         {/* Category Badge */}
-        <span className={`text-[10px] uppercase tracking-widest font-black mb-4 block ${isSpecial ? 'text-accent' : 'text-pistachio'}`}>
-          {category}
-        </span>
+        <div className="flex justify-between items-center mb-4">
+          <span className={`text-[10px] uppercase tracking-widest font-black ${isSpecial ? 'text-accent' : 'text-pistachio'}`}>
+            {category}
+          </span>
+          <span className="text-[9px] font-bold text-accent opacity-0 group-hover:opacity-100 transition-opacity tracking-widest">
+            KOLEKSİYONU İNCELE →
+          </span>
+        </div>
 
         {/* Product Image Wrapper */}
         <div className="relative aspect-[4/3] w-full mb-6 perspective-1000">
@@ -62,6 +69,13 @@ const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial =
                   <span className="font-playfair font-bold italic text-lg text-primary/20">KULE MEVLANA</span>
                 </div>
               )}
+              
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="bg-white/90 backdrop-blur-md text-primary font-black text-[10px] uppercase tracking-widest px-6 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                  İncele
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>

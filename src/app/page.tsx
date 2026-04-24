@@ -100,6 +100,17 @@ export default function Home() {
                 imageUrl={product.imageUrl}
                 delay={product.delay}
                 isSpecial={product.isSpecial}
+                onClick={() => {
+                  const catMap: Record<string, string> = {
+                    'Pasta': 'pastalar',
+                    'Şerbetli': 'serbetli-tatlilar',
+                    'Fırın': 'firin-ve-unlu-mamuller',
+                    'Kurabiye': 'kurabiyeler'
+                  };
+                  const categoryId = catMap[product.category];
+                  const targetCategory = categories.find(c => c.id === categoryId);
+                  if (targetCategory) setActiveCategory(targetCategory);
+                }}
               />
             ))}
           </div>
