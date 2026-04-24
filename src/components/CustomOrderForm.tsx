@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Send, MapPin, Sparkles, ShieldCheck } from "lucide-react";
 
 export default function CustomOrderForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -33,6 +34,7 @@ export default function CustomOrderForm() {
       `*Tasarım Notları:* ${formData.notes}`;
     
     window.open(`https://wa.me/905309351955?text=${message}`, "_blank");
+    setIsSubmitted(true);
   };
 
   return (
@@ -82,146 +84,176 @@ export default function CustomOrderForm() {
           >
             <div className="absolute -inset-4 bg-gradient-to-tr from-accent/20 to-pistachio/20 blur-3xl rounded-[4rem] opacity-30" />
             
-            <div className="relative bg-white/90 backdrop-blur-3xl rounded-[4rem] p-8 md:p-14 shadow-[0_40px_120px_rgba(0,0,0,0.07)] border border-white">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                
-                {/* Section 1: Contact */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">İsim Soyisim</label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="Örn: Burak Uçar"
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Telefon</label>
-                    <input
-                      required
-                      type="tel"
-                      placeholder="05xx xxx xx xx"
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
-                  </div>
-                </div>
+            <div className="relative bg-white/90 backdrop-blur-3xl rounded-[4rem] p-8 md:p-14 shadow-[0_40px_120px_rgba(0,0,0,0.07)] border border-white overflow-hidden">
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <motion.form
+                    key="order-form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    onSubmit={handleSubmit} 
+                    className="space-y-8"
+                  >
+                    {/* ... (keep existing form content) ... */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">İsim Soyisim</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Örn: Burak Uçar"
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Telefon</label>
+                        <input
+                          required
+                          type="tel"
+                          placeholder="05xx xxx xx xx"
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                      </div>
+                    </div>
 
-                {/* Section 2: Event Details */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Etkinlik Türü</label>
-                    <select
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
-                      onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Etkinlik Türü</label>
+                        <select
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
+                          onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
+                        >
+                          <option>Doğum Günü</option>
+                          <option>Düğün & Nişan</option>
+                          <option>Yıldönümü</option>
+                          <option>Baby Shower</option>
+                          <option>Kurumsal Etkinlik</option>
+                          <option>Diğer</option>
+                        </select>
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Teslim Tarihi</label>
+                        <input
+                          required
+                          type="date"
+                          min={new Date().toISOString().split('T')[0]}
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
+                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Kişi Sayısı</label>
+                        <select
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
+                          onChange={(e) => setFormData({ ...formData, people: e.target.value })}
+                        >
+                          <option>10-15 Kişilik</option>
+                          <option>20-30 Kişilik</option>
+                          <option>40-50 Kişilik</option>
+                          <option>50+ Kişilik</option>
+                        </select>
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Pasta Formu</label>
+                        <select
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
+                          onChange={(e) => setFormData({ ...formData, shape: e.target.value })}
+                        >
+                          <option>Yuvarlak</option>
+                          <option>Kare</option>
+                          <option>Kalp</option>
+                          <option>Çok Katlı</option>
+                          <option>Özel Kesim (Rakam/Harf)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Ana Aroma</label>
+                        <select
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
+                          onChange={(e) => setFormData({ ...formData, flavor: e.target.value })}
+                        >
+                          <option>Çikolatalı & Fıstıklı</option>
+                          <option>Meyveli (Karışık)</option>
+                          <option>Karamelli & Krokanlı</option>
+                          <option>Lotus & Biscoff</option>
+                          <option>Vanilyalı & Çilekli</option>
+                        </select>
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Teslimat</label>
+                        <select
+                          className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
+                          onChange={(e) => setFormData({ ...formData, deliveryType: e.target.value })}
+                        >
+                          <option>Dükkandan Teslim</option>
+                          <option>Adrese Teslimat (+Ücretli)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Alerjen Notu / Ek İstekler</label>
+                      <textarea
+                        rows={2}
+                        placeholder="Örn: Kuruyemiş alerjisi var, Az şekerli olsun..."
+                        className="w-full bg-black/5 rounded-2xl px-6 py-4 outline-none focus:bg-accent/5 transition-all font-medium text-primary resize-none"
+                        onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
+                      ></textarea>
+                    </div>
+
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Tasarım Detayları</label>
+                      <textarea
+                        rows={3}
+                        placeholder="Pastanızın üzerinde ne yazsın? Hangi konsepti hayal ediyorsunuz?"
+                        className="w-full bg-black/5 rounded-2xl px-6 py-4 outline-none focus:bg-accent/5 transition-all font-medium text-primary resize-none"
+                        onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      ></textarea>
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="w-full bg-primary text-white font-black py-6 rounded-3xl flex items-center justify-center gap-4 hover:bg-accent transition-all duration-500 shadow-2xl shadow-primary/20 group"
                     >
-                      <option>Doğum Günü</option>
-                      <option>Düğün & Nişan</option>
-                      <option>Yıldönümü</option>
-                      <option>Baby Shower</option>
-                      <option>Kurumsal Etkinlik</option>
-                      <option>Diğer</option>
-                    </select>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Teslim Tarihi</label>
-                    <input
-                      required
-                      type="date"
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary"
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                {/* Section 3: Cake Specs */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Kişi Sayısı</label>
-                    <select
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
-                      onChange={(e) => setFormData({ ...formData, people: e.target.value })}
+                      TASARIMI BAŞLAT <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </motion.button>
+                  </motion.form>
+                ) : (
+                  <motion.div
+                    key="success-message"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="py-20 text-center space-y-8"
+                  >
+                    <div className="w-24 h-24 bg-accent/10 rounded-full flex items-center justify-center mx-auto text-accent mb-4">
+                      <ShieldCheck size={48} />
+                    </div>
+                    <h3 className="font-playfair font-black text-3xl text-primary">Talebiniz Hazırlandı!</h3>
+                    <p className="text-primary/60 text-lg leading-relaxed">
+                      WhatsApp üzerinden detayları onaylayarak <br />
+                      siparişinizi tamamlayabilirsiniz. <br />
+                      Ustalıkla hazırlanan lezzetimiz için sabırsızlanıyoruz!
+                    </p>
+                    <button 
+                      onClick={() => setIsSubmitted(false)}
+                      className="text-accent font-bold border-b border-accent/30 hover:border-accent transition-all pb-1 uppercase tracking-widest text-xs"
                     >
-                      <option>10-15 Kişilik</option>
-                      <option>20-30 Kişilik</option>
-                      <option>40-50 Kişilik</option>
-                      <option>50+ Kişilik</option>
-                    </select>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Pasta Formu</label>
-                    <select
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
-                      onChange={(e) => setFormData({ ...formData, shape: e.target.value })}
-                    >
-                      <option>Yuvarlak</option>
-                      <option>Kare</option>
-                      <option>Kalp</option>
-                      <option>Çok Katlı</option>
-                      <option>Özel Kesim (Rakam/Harf)</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Section 4: Flavor & Delivery */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Ana Aroma</label>
-                    <select
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
-                      onChange={(e) => setFormData({ ...formData, flavor: e.target.value })}
-                    >
-                      <option>Çikolatalı & Fıstıklı</option>
-                      <option>Meyveli (Karışık)</option>
-                      <option>Karamelli & Krokanlı</option>
-                      <option>Lotus & Biscoff</option>
-                      <option>Vanilyalı & Çilekli</option>
-                    </select>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Teslimat</label>
-                    <select
-                      className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
-                      onChange={(e) => setFormData({ ...formData, deliveryType: e.target.value })}
-                    >
-                      <option>Dükkandan Teslim</option>
-                      <option>Adrese Teslimat (+Ücretli)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Alerjen Notu / Ek İstekler</label>
-                  <textarea
-                    rows={2}
-                    placeholder="Örn: Kuruyemiş alerjisi var, Az şekerli olsun..."
-                    className="w-full bg-black/5 rounded-2xl px-6 py-4 outline-none focus:bg-accent/5 transition-all font-medium text-primary resize-none"
-                    onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
-                  ></textarea>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Tasarım Detayları</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Pastanızın üzerinde ne yazsın? Hangi konsepti hayal ediyorsunuz?"
-                    className="w-full bg-black/5 rounded-2xl px-6 py-4 outline-none focus:bg-accent/5 transition-all font-medium text-primary resize-none"
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  ></textarea>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="w-full bg-primary text-white font-black py-6 rounded-3xl flex items-center justify-center gap-4 hover:bg-accent transition-all duration-500 shadow-2xl shadow-primary/20 group"
-                >
-                  TASARIMI BAŞLAT <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </motion.button>
-              </form>
+                      Yeni Bir Talep Oluştur
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
