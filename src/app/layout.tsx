@@ -30,6 +30,20 @@ export const metadata: Metadata = {
     siteName: 'Kule Mevlana',
     locale: 'tr_TR',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Kule Mevlana - Butik Pasta & Fırın',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kule Mevlana Samsun | Butik Pasta & Fırın',
+    description: "Samsun Atakum'da yarım asırlık lezzet mirası. Taze, organik ve kişiye özel butik pasta tasarımları.",
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/favicon.png',
