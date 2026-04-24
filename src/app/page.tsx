@@ -7,8 +7,6 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FloatingCard from "@/components/FloatingCard";
-import ExplodedCake from "@/components/ExplodedCake";
-import ReelsSection from "@/components/ReelsSection";
 import FloatingContact from "@/components/FloatingContact";
 import CustomOrderForm from "@/components/CustomOrderForm";
 import { categories } from "@/data/products";
