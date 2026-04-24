@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     locale: 'tr_TR',
     type: 'website',
   },
+  icons: {
+    icon: '/favicon.png',
+  },
   robots: {
     index: true,
     follow: true,
