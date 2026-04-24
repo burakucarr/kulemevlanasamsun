@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -9,13 +9,8 @@ import {
 } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { categories } from "@/data/products";
 import type { ProductCategory } from "@/data/products";
-
-const ProductGallery = dynamic(() => import("@/components/ProductGallery"), {
-  ssr: false,
-});
 
 /* ── Parallax hook — Antigravity effect ────────────────────────────── */
 function useParallax(offset: number) {
@@ -25,11 +20,26 @@ function useParallax(offset: number) {
   return { ref, y };
 }
 
-export default function Hero() {
+interface HeroProps {
+  onCategoryClick: (cat: ProductCategory) => void;
+}
+
+export default function Hero({ onCategoryClick }: HeroProps) {
   const { scrollY } = useScroll();
-  const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(
-    null
-  );
+
+  const [badgeIndex, setBadgeIndex] = useState(0);
+  const badgePhrases = [
+    { text: "Günlük", highlight: "Taze Üretim" },
+    { text: "El Yapımı", highlight: "Lezzetler" },
+    { text: "Kişiye Özel", highlight: "Tasarım" }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBadgeIndex((prev) => (prev + 1) % badgePhrases.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
 
   /* ── Antigravity Layers ── */
   const bg = useParallax(200);      // Background drifts slowest (Living Shop)
@@ -124,15 +134,26 @@ export default function Hero() {
 
           {/* Floating Freshness Badge */}
           <motion.div
-            initial={{ scale: 0, opacity: 0, rotate: -15 }}
-            animate={{ scale: 1, opacity: 1, rotate: -5 }}
+            initial={{ scale: 0, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0, rotate: 0 }}
             transition={{ delay: 1.5, type: "spring" }}
             className="mt-12 inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-3"
           >
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            <span className="text-white text-xs md:text-sm font-black tracking-widest uppercase">
-              Her Gün <span className="text-amber-300">Taptaze</span>
-            </span>
+            <div className="relative h-6 flex items-center overflow-hidden min-w-[200px]">
+              <AnimatePresence mode="popLayout">
+                <motion.span
+                  key={badgeIndex}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="text-white text-xs md:text-sm font-black tracking-widest uppercase absolute"
+                >
+                  {badgePhrases[badgeIndex].text} <span className="text-amber-300">{badgePhrases[badgeIndex].highlight}</span>
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -158,7 +179,7 @@ export default function Hero() {
                 <TrayCard
                   cat={cat}
                   index={i}
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => onCategoryClick(cat)}
                 />
               </div>
             ))}
@@ -173,16 +194,6 @@ export default function Hero() {
           <ChevronDown size={32} />
         </motion.div>
       </section>
-
-      <AnimatePresence>
-        {activeCategory && (
-          <ProductGallery
-            key={activeCategory.id}
-            category={activeCategory}
-            onClose={() => setActiveCategory(null)}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 }

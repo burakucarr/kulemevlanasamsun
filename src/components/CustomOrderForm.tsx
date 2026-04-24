@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, MapPin, Sparkles, ShieldCheck } from "lucide-react";
 
-export default function CustomOrderForm() {
+export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () => void }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -53,10 +53,18 @@ export default function CustomOrderForm() {
               <span className="text-accent italic">Lezzete</span> Dönüşsün
             </h2>
             
-            <p className="text-primary/60 text-lg md:text-2xl font-medium mb-12 leading-relaxed">
+            <p className="text-primary/60 text-lg md:text-2xl font-medium mb-6 leading-relaxed">
               Kule Mevlana'nın yarım asırlık ustalığını, sizin hayal gücünüzle birleştiriyoruz. 
               Sadece size özel, eşi benzeri olmayan bir pasta deneyimi için formu doldurun.
             </p>
+
+            <button 
+              onClick={onViewGallery}
+              className="group flex items-center gap-3 text-accent font-black uppercase tracking-widest text-sm mb-12 hover:text-primary transition-colors"
+            >
+              <Sparkles size={18} className="animate-pulse" />
+              <span className="border-b-2 border-accent/20 group-hover:border-primary transition-all">Pasta örnekleri için buraya tıklayınız</span>
+            </button>
 
             <div className="space-y-8">
               {[

@@ -1,14 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FloatingCard from "@/components/FloatingCard";
 import ExplodedCake from "@/components/ExplodedCake";
 import ReelsSection from "@/components/ReelsSection";
 import FloatingContact from "@/components/FloatingContact";
-
 import CustomOrderForm from "@/components/CustomOrderForm";
+import { categories } from "@/data/products";
+import type { ProductCategory } from "@/data/products";
+
+const ProductGallery = dynamic(() => import("@/components/ProductGallery"), {
+  ssr: false,
+});
 
 const featuredProducts = [
   { id: 1, title: "Özel Meyveli Pasta", price: "450", category: "Pasta", imageUrl: "/images/products/pastalar.webp", delay: 0.1 },
@@ -18,13 +25,38 @@ const featuredProducts = [
 ];
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(null);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  const handleOpenOzelPasta = () => {
+    const ozelPasta = categories.find(c => c.id === 'ozel-pastalar');
+    if (ozelPasta) setActiveCategory(ozelPasta);
+  };
+
   return (
     <>
+      <AnimatePresence>
+        {activeCategory && (
+          <ProductGallery
+            key={activeCategory.id}
+            category={activeCategory}
+            onClose={() => setActiveCategory(null)}
+          />
+        )}
+      </AnimatePresence>
       <main className="min-h-screen">
         <Navbar />
       
       {/* Hero Section */}
-      <Hero />
+      <div id="pastalar" />
+      <div id="eklerler" />
+      <Hero onCategoryClick={setActiveCategory} />
 
       {/* Dark → Cream transition strip */}
       <div className="h-24 bg-gradient-to-b from-[#1A0C04] to-[#FDFDF5]" />
@@ -84,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* Custom Order Form Section */}
-      <CustomOrderForm />
+      <CustomOrderForm onViewGallery={handleOpenOzelPasta} />
 
       {/* Testimonials Section */}
       <section className="py-24 md:py-40 bg-[#FDFDF5]">
@@ -127,7 +159,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 md:py-24 border-t border-black/5 text-center bg-background">
+      <footer id="hakkimizda" className="py-16 md:py-24 border-t border-black/5 text-center bg-background">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h3 className="font-playfair font-black text-3xl md:text-4xl text-primary mb-4 md:mb-6 tracking-tighter">KULE MEVLANA</h3>
           <p className="text-secondary text-sm font-black tracking-[0.4em] uppercase mb-4">
