@@ -175,8 +175,8 @@ export default function Home() {
           </div>
 
           <div className="pt-8 md:pt-12 border-t border-black/5">
-            <p className="text-primary/20 text-[9px] md:text-[10px] font-black tracking-[0.4em] md:tracking-[0.5em] uppercase">
-              © 2026 KULE MEVLANA | ORGANIC & ANTIGRAVITY EXPERIENCE
+            <p className="text-primary/20 text-[9px] md:text-[10px] font-black tracking-[0.4em] md:tracking-[0.5em] uppercase text-center">
+              © 2026 KULE MEVLANA | TÜM HAKLARI SAKLIDIR
             </p>
           </div>
         </div>
