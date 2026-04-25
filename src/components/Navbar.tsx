@@ -18,12 +18,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6 transition-all duration-300">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-3 md:p-4 transition-all duration-300">
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`w-full max-w-6xl flex items-center justify-between px-6 py-3 rounded-full border border-black/5 glass-card transition-all duration-500 ${
-          isScrolled ? 'py-2 px-8 scale-95 shadow-xl bg-background/80' : 'scale-100'
+        className={`w-full max-w-6xl flex items-center justify-between px-6 py-2 rounded-full border border-black/5 glass-card transition-all duration-500 shadow-md ${
+          isScrolled ? 'py-1.5 px-8 scale-95 shadow-2xl bg-white/90' : 'scale-100'
         }`}
       >
         {/* Logo */}
@@ -33,19 +33,19 @@ const Navbar = () => {
         >
           <motion.div 
             whileHover={{ rotate: 15, scale: 1.05 }}
-            className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-primary/5 relative overflow-hidden"
+            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg border border-primary/10 relative overflow-hidden"
           >
-            {/* Minimalist Wheat Stalk Icon (SVG) */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-primary z-10">
+            {/* Minimalist Wheat Stalk Icon (SVG) - Now in white for better contrast */}
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white z-10">
               <path d="M12 22V8M12 8C12 8 14 6 16 6M12 8C12 8 10 6 8 6M12 12C12 12 14 10 16 10M12 12C12 12 10 10 8 10M12 16C12 16 14 14 16 14M12 16C12 16 10 14 8 14" strokeLinecap="round"/>
             </svg>
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent" />
           </motion.div>
           <div className="flex flex-col -gap-1">
-            <span className="font-playfair font-black text-xl tracking-tight text-primary group-hover:text-accent transition-colors leading-none">
+            <span className="font-playfair font-black text-lg tracking-tight text-primary group-hover:text-accent transition-colors leading-none">
               KULE MEVLANA
             </span>
-            <span className="text-[9px] font-black tracking-[0.3em] text-secondary uppercase">
+            <span className="text-[10px] font-black tracking-[0.25em] text-primary/70 uppercase">
               CAFE • FIRIN • PASTA
             </span>
           </div>
