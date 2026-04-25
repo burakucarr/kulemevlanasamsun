@@ -12,10 +12,11 @@ interface FloatingCardProps {
   imageUrl: string;
   delay?: number;
   isSpecial?: boolean;
+  priority?: boolean;
   onClick?: () => void;
 }
 
-const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial = false, onClick }: FloatingCardProps) => {
+const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial = false, priority = false, onClick }: FloatingCardProps) => {
   return (
     <motion.div
       initial={{ y: 50, opacity: 0 }}
@@ -56,12 +57,14 @@ const FloatingCard = ({ title, price, category, imageUrl, delay = 0, isSpecial =
             {/* Soft Glow */}
             <div className={`absolute inset-0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-20 ${isSpecial ? 'bg-accent' : 'bg-pistachio'}`} />
             
-            <div className={`w-full h-full relative rounded-2xl overflow-hidden border ${isSpecial ? 'border-accent/10' : 'border-black/5'} bg-white/40 shadow-inner`}>
+            <div className={`w-full h-full relative rounded-2xl overflow-hidden border ${isSpecial ? 'border-accent/10' : 'border-black/5'} bg-white/40 shadow-inner skeleton-loader`}>
               {imageUrl ? (
                 <Image 
                   src={imageUrl} 
                   alt={title} 
                   fill 
+                  priority={priority}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               ) : (

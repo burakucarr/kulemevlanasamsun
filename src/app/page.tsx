@@ -100,6 +100,7 @@ export default function Home() {
                 imageUrl={product.imageUrl}
                 delay={product.delay}
                 isSpecial={product.isSpecial}
+                priority={product.id <= 2}
                 onClick={() => {
                   const catMap: Record<string, string> = {
                     'Pasta': 'pastalar',

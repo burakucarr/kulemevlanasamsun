@@ -141,12 +141,13 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                   className="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-2xl transition-shadow duration-300"
                   onClick={() => setLightboxIndex(idx)}
                 >
-                  <div className={`relative w-full ${idx % 3 === 0 ? "aspect-[3/4]" : idx % 3 === 1 ? "aspect-square" : "aspect-[4/3]"}`}>
+                  <div className={`relative w-full overflow-hidden skeleton-loader ${idx % 3 === 0 ? "aspect-[3/4]" : idx % 3 === 1 ? "aspect-square" : "aspect-[4/3]"}`}>
                     <Image
                       src={img.src}
                       alt={img.alt}
                       fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      priority={idx < 6}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
