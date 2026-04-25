@@ -177,18 +177,17 @@ export default function Home() {
         </div>
 
         {/* Draggable Slider Container */}
-        <div className="relative px-4 md:px-0">
+        <div className="relative px-4 md:px-0 overflow-hidden">
           <motion.div 
             initial={{ x: 80, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ type: "spring", damping: 25, stiffness: 80, delay: 0.2 }}
             viewport={{ once: true, margin: "-50px" }}
-            className="flex gap-6 md:gap-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory cursor-grab active:cursor-grabbing pb-12"
-            style={{ 
-              scrollbarWidth: 'none', 
-              msOverflowStyle: 'none',
-              WebkitOverflowScrolling: 'touch'
-            }}
+            drag="x"
+            dragConstraints={{ left: -1500, right: 0 }}
+            dragElastic={0.1}
+            className="flex gap-6 md:gap-10 cursor-grab active:cursor-grabbing pb-12"
+            style={{ width: "max-content" }}
           >
             {[
               { name: "Samet Köse", comment: "Kalitenin ve lezzetin tek adresi. Pastaları unutulmaz, hijyen ve temizlik üst düzey. Ailenizle vakit geçirebileceğiniz harika bir mekan.", platform: "Google" },
@@ -204,12 +203,9 @@ export default function Home() {
             ].map((testi, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-[85vw] md:w-[420px] snap-center"
+                className="flex-shrink-0 w-[85vw] md:w-[420px] select-none"
               >
-                <div className="bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 h-full flex flex-col justify-between hover:border-accent/20 transition-colors">
+                <div className="bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 h-full flex flex-col justify-between hover:border-accent/20 transition-colors pointer-events-none">
                   <p className="text-primary font-medium italic text-base md:text-lg mb-8 leading-relaxed">"{testi.comment}"</p>
                   <div className="flex items-center justify-between">
                     <span className="font-black text-primary uppercase tracking-widest text-xs md:text-sm">{testi.name}</span>
