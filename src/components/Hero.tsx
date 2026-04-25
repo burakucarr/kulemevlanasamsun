@@ -57,7 +57,7 @@ export default function Hero({ onCategoryClick }: HeroProps) {
           className="absolute inset-0 z-0 will-change-transform scale-110"
         >
           <Image
-            src="/images/hero-bg.webp"
+            src="/images/DSCF3496.webp"
             alt="Kule Mevlana Vitrin"
             fill
             priority
