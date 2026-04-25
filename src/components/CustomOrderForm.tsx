@@ -21,19 +21,19 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `*Yeni Özel Pasta Tasarım Talebi*%0A%0A` +
-      `*Müşteri:* ${formData.name}%0A` +
-      `*Telefon:* ${formData.phone}%0A` +
-      `*Etkinlik:* ${formData.eventType}%0A` +
-      `*Tarih:* ${formData.date}%0A` +
-      `*Kişi Sayısı:* ${formData.people}%0A` +
-      `*Pasta Formu:* ${formData.shape}%0A` +
-      `*Aroma:* ${formData.flavor}%0A` +
-      `*Teslimat:* ${formData.deliveryType}%0A` +
-      `*Alerjen Notu:* ${formData.allergies}%0A` +
+    const message = `*Yeni Özel Pasta Tasarım Talebi*\n\n` +
+      `*Müşteri:* ${formData.name}\n` +
+      `*Telefon:* ${formData.phone}\n` +
+      `*Etkinlik:* ${formData.eventType}\n` +
+      `*Tarih:* ${formData.date}\n` +
+      `*Kişi Sayısı:* ${formData.people}\n` +
+      `*Pasta Formu:* ${formData.shape}\n` +
+      `*Aroma:* ${formData.flavor}\n` +
+      `*Teslimat:* ${formData.deliveryType}\n` +
+      `*Alerjen Notu:* ${formData.allergies}\n` +
       `*Tasarım Notları:* ${formData.notes}`;
     
-    window.open(`https://wa.me/905309351955?text=${message}`, "_blank");
+    window.open(`https://wa.me/905309351955?text=${encodeURIComponent(message)}`, "_blank");
     setIsSubmitted(true);
   };
 
