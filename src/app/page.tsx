@@ -223,17 +223,17 @@ export default function Home() {
             ].map((testi, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-[85vw] md:w-[420px] snap-center"
+                className="flex-shrink-0 w-[85vw] md:w-[450px] snap-center px-2"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 h-full flex flex-col justify-between hover:border-accent/20 transition-colors"
+                  className="bg-white p-8 md:p-12 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 h-full flex flex-col justify-between hover:border-accent/20 transition-colors"
                 >
                   <p className="text-primary font-medium italic text-base md:text-lg mb-8 leading-relaxed">"{testi.comment}"</p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-auto">
                     <span className="font-black text-primary uppercase tracking-widest text-xs md:text-sm">{testi.name}</span>
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
@@ -243,6 +243,8 @@ export default function Home() {
                 </motion.div>
               </div>
             ))}
+            {/* Spacer to fix right-side padding in flex-scroll */}
+            <div className="flex-shrink-0 w-8 md:w-24 h-full" />
           </div>
 
           {/* Custom Scroll Progress Bar */}
