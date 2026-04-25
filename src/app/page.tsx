@@ -259,18 +259,6 @@ export default function Home() {
         </div>
       </section>
 
-          {/* Custom Scroll Progress Bar */}
-          <div className="max-w-xs mx-auto h-1 bg-black/5 rounded-full overflow-hidden mt-4">
-            <motion.div 
-              className="h-full bg-accent"
-              initial={{ width: "20%" }}
-              whileInView={{ width: "100%" }}
-              transition={{ duration: 2 }}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <FAQ />
 
