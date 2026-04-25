@@ -185,15 +185,18 @@ export default function Home() {
           >
             {[
               { name: "Samet Köse", comment: "Kalitenin ve lezzetin tek adresi. Pastaları unutulmaz, hijyen ve temizlik üst düzey. Ailenizle vakit geçirebileceğiniz harika bir mekan.", platform: "Google" },
+              { name: "Selin K.", comment: "Özel tasarım pastamız tam hayal ettiğimiz gibiydi. Hem görseli hem de tadı şahaneydi, emeğinize sağlık!", platform: "Instagram" },
               { name: "Fatih Cevizci", comment: "Gerçekten çok kaliteli ve taze ürünler. Çalışanlar çok cana yakın ve ilgili.", platform: "Google" },
+              { name: "Deniz A.", comment: "Kule Mevlana'da kahve ve ekler ikilisi favorim. Ambiyans çok huzurlu, Atakum'un en iyi kaçış noktası.", platform: "Instagram" },
               { name: "Kemal Ömür", comment: "Pastaları tek kelimeyle efsane! Atakum'da daha iyisini yemedim.", platform: "Google" },
+              { name: "Mert B.", comment: "Her sabah taze kruvasan kokusuyla uyanmak... Samsun'da gerçek artisan lezzet arayanlara tavsiyemdir.", platform: "Instagram" },
               { name: "Batuhan Çelebi", comment: "Baklava, ekmek ve unlu mamuller... Her şey taptaze ve çok lezzetli.", platform: "Google" },
+              { name: "Buse T.", comment: "Doğum günü partimiz için hazırladığınız butik kurabiyeler hem çocukların hem de bizim favorimiz oldu. Teşekkürler!", platform: "Instagram" },
               { name: "Öner Barut", comment: "Pastaları harika, tam kıvamında. Özel günlerimiz için tek adresimiz.", platform: "Google" },
               { name: "Neslihan Aktaş", comment: "Hem unlu mamülleri hem de tatlıları gerçekten çok güzel. Kesinlikle tavsiye ederim.", platform: "Google" },
               // Duplicate for infinite loop
               { name: "Samet Köse", comment: "Kalitenin ve lezzetin tek adresi. Pastaları unutulmaz, hijyen ve temizlik üst düzey. Ailenizle vakit geçirebileceğiniz harika bir mekan.", platform: "Google" },
-              { name: "Fatih Cevizci", comment: "Gerçekten çok kaliteli ve taze ürünler. Çalışanlar çok cana yakın ve ilgili.", platform: "Google" },
-              { name: "Kemal Ömür", comment: "Pastaları tek kelimeyle efsane! Atakum'da daha iyisini yemedim.", platform: "Google" },
+              { name: "Selin K.", comment: "Özel tasarım pastamız tam hayal ettiğimiz gibiydi. Hem görseli hem de tadı şahaneydi, emeğinize sağlık!", platform: "Instagram" },
             ].map((testi, i) => (
               <div
                 key={i}
