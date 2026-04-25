@@ -177,17 +177,37 @@ export default function Home() {
         </div>
 
         {/* Draggable Slider Container */}
-        <div className="relative px-4 md:px-0 overflow-hidden">
-          <motion.div 
-            initial={{ x: 80, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", damping: 25, stiffness: 80, delay: 0.2 }}
-            viewport={{ once: true, margin: "-50px" }}
-            drag="x"
-            dragConstraints={{ left: -1500, right: 0 }}
-            dragElastic={0.1}
-            className="flex gap-6 md:gap-10 cursor-grab active:cursor-grabbing pb-12"
-            style={{ width: "max-content" }}
+        <div className="relative group px-4 md:px-0">
+          {/* Navigation Buttons - Desktop Only */}
+          <div className="hidden md:flex absolute -left-12 -right-12 top-1/2 -translate-y-1/2 justify-between z-10 pointer-events-none">
+            <button 
+              onClick={() => {
+                const el = document.getElementById('testimonial-container');
+                if (el) el.scrollBy({ left: -400, behavior: 'smooth' });
+              }}
+              className="w-12 h-12 rounded-full bg-white border border-black/5 shadow-xl flex items-center justify-center text-primary hover:text-accent hover:scale-110 transition-all pointer-events-auto"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button 
+              onClick={() => {
+                const el = document.getElementById('testimonial-container');
+                if (el) el.scrollBy({ left: 400, behavior: 'smooth' });
+              }}
+              className="w-12 h-12 rounded-full bg-white border border-black/5 shadow-xl flex items-center justify-center text-primary hover:text-accent hover:scale-110 transition-all pointer-events-auto"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+
+          <div 
+            id="testimonial-container"
+            className="flex gap-6 md:gap-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-12 scroll-smooth"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
           >
             {[
               { name: "Samet Köse", comment: "Kalitenin ve lezzetin tek adresi. Pastaları unutulmaz, hijyen ve temizlik üst düzey. Ailenizle vakit geçirebileceğiniz harika bir mekan.", platform: "Google" },
@@ -201,11 +221,17 @@ export default function Home() {
               { name: "Öner Barut", comment: "Pastaları harika, tam kıvamında. Özel günlerimiz için tek adresimiz.", platform: "Google" },
               { name: "Neslihan Aktaş", comment: "Hem unlu mamülleri hem de tatlıları gerçekten çok güzel. Kesinlikle tavsiye ederim.", platform: "Google" },
             ].map((testi, i) => (
-              <motion.div
+              <div
                 key={i}
-                className="flex-shrink-0 w-[85vw] md:w-[420px] select-none"
+                className="flex-shrink-0 w-[85vw] md:w-[420px] snap-center"
               >
-                <div className="bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 h-full flex flex-col justify-between hover:border-accent/20 transition-colors pointer-events-none">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 h-full flex flex-col justify-between hover:border-accent/20 transition-colors"
+                >
                   <p className="text-primary font-medium italic text-base md:text-lg mb-8 leading-relaxed">"{testi.comment}"</p>
                   <div className="flex items-center justify-between">
                     <span className="font-black text-primary uppercase tracking-widest text-xs md:text-sm">{testi.name}</span>
@@ -214,10 +240,22 @@ export default function Home() {
                       <span className="text-secondary text-[10px] font-bold uppercase tracking-widest">{testi.platform}</span>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
+
+          {/* Custom Scroll Progress Bar */}
+          <div className="max-w-xs mx-auto h-1 bg-black/5 rounded-full overflow-hidden mt-4">
+            <motion.div 
+              className="h-full bg-accent"
+              initial={{ width: "20%" }}
+              whileInView={{ width: "100%" }}
+              transition={{ duration: 2 }}
+            />
+          </div>
+        </div>
+      </section>
 
           {/* Custom Scroll Progress Bar */}
           <div className="max-w-xs mx-auto h-1 bg-black/5 rounded-full overflow-hidden mt-4">
