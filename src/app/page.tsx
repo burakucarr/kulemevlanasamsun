@@ -176,12 +176,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Infinite Slider */}
-        <div className="relative flex overflow-hidden">
+        {/* Draggable Slider */}
+        <div className="relative cursor-grab active:cursor-grabbing px-4 md:px-0">
           <motion.div 
-            animate={{ x: [0, -2000] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="flex gap-8 whitespace-nowrap"
+            drag="x"
+            dragConstraints={{ right: 0, left: -2500 }}
+            dragElastic={0.1}
+            className="flex gap-6 md:gap-10"
+            style={{ width: "max-content" }}
           >
             {[
               { name: "Samet Köse", comment: "Kalitenin ve lezzetin tek adresi. Pastaları unutulmaz, hijyen ve temizlik üst düzey. Ailenizle vakit geçirebileceğiniz harika bir mekan.", platform: "Google" },
@@ -194,25 +196,30 @@ export default function Home() {
               { name: "Buse T.", comment: "Doğum günü partimiz için hazırladığınız butik kurabiyeler hem çocukların hem de bizim favorimiz oldu. Teşekkürler!", platform: "Instagram" },
               { name: "Öner Barut", comment: "Pastaları harika, tam kıvamında. Özel günlerimiz için tek adresimiz.", platform: "Google" },
               { name: "Neslihan Aktaş", comment: "Hem unlu mamülleri hem de tatlıları gerçekten çok güzel. Kesinlikle tavsiye ederim.", platform: "Google" },
-              // Duplicate for infinite loop
-              { name: "Samet Köse", comment: "Kalitenin ve lezzetin tek adresi. Pastaları unutulmaz, hijyen ve temizlik üst düzey. Ailenizle vakit geçirebileceğiniz harika bir mekan.", platform: "Google" },
-              { name: "Selin K.", comment: "Özel tasarım pastamız tam hayal ettiğimiz gibiydi. Hem görseli hem de tadı şahaneydi, emeğinize sağlık!", platform: "Instagram" },
             ].map((testi, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="w-[350px] md:w-[450px] bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 flex flex-col justify-between whitespace-normal"
+                whileHover={{ y: -5 }}
+                className="w-[300px] md:w-[420px] bg-white p-8 md:p-10 rounded-[3rem] border border-black/5 shadow-xl shadow-primary/5 flex flex-col justify-between whitespace-normal select-none"
               >
                 <p className="text-primary font-medium italic text-base md:text-lg mb-8 leading-relaxed">"{testi.comment}"</p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pointer-events-none">
                   <span className="font-black text-primary uppercase tracking-widest text-xs md:text-sm">{testi.name}</span>
                   <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
                     <span className="text-secondary text-[10px] font-bold uppercase tracking-widest">{testi.platform}</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
+
+          {/* Drag Hint - Desktop Only */}
+          <div className="hidden md:flex justify-center mt-12 gap-3 opacity-20">
+             <div className="w-2 h-2 rounded-full bg-primary" />
+             <div className="w-2 h-2 rounded-full bg-primary/40" />
+             <div className="w-2 h-2 rounded-full bg-primary/20" />
+          </div>
         </div>
       </section>
 
