@@ -2,6 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  trailingSlash: true,
+  devIndicators: {
+    appIsrStatus: false,
+  },
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
   images: {
     // Allow large local product images without size constraints during dev
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],

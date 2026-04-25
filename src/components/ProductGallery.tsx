@@ -146,7 +146,7 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                       src={img.src}
                       alt={img.alt}
                       fill
-                      priority={idx < 6}
+                      priority={idx < 2}
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -179,29 +179,41 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                 onClick={() => setLightboxIndex(null)}
               />
               <motion.div
-                key={`lightbox-img-${lightboxIndex}`}
-                variants={imgVariant}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
+                key="lightbox-container"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 className="fixed inset-0 z-[151] flex items-center justify-center p-4 md:p-16"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative w-full h-full max-w-5xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl">
-                  <Image
-                    src={category.images[lightboxIndex].src}
-                    alt={category.images[lightboxIndex].alt}
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-contain"
-                  />
+                <div className="relative w-full h-full max-w-5xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl bg-black/20">
+                  <AnimatePresence mode="wait">
+                    {category.images[lightboxIndex] && (
+                      <motion.div
+                        key={category.images[lightboxIndex].src}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={category.images[lightboxIndex].src}
+                          alt={category.images[lightboxIndex].alt}
+                          fill
+                          sizes="(max-width: 1280px) 100vw, 1280px"
+                          className="object-contain"
+                          quality={85}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Caption */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10">
                   <p className="text-white text-sm font-medium">
-                    {category.images[lightboxIndex].alt}
+                    {category.images[lightboxIndex]?.alt}
                   </p>
                 </div>
 
@@ -227,22 +239,26 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                 </motion.button>
 
                 {/* Prev / Next */}
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                  className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
-                >
-                  <ChevronLeft size={22} />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={(e) => { e.stopPropagation(); goNext(); }}
-                  className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
-                >
-                  <ChevronRight size={22} />
-                </motion.button>
+                {category.images.length > 1 && (
+                  <>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                      className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                    >
+                      <ChevronLeft size={22} />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => { e.stopPropagation(); goNext(); }}
+                      className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                    >
+                      <ChevronRight size={22} />
+                    </motion.button>
+                  </>
+                )}
               </motion.div>
             </>
           )}

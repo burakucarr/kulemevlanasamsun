@@ -103,10 +103,10 @@ export default function Home() {
                 priority={product.id <= 2}
                 onClick={() => {
                   const catMap: Record<string, string> = {
-                    'Pasta': 'pastalar',
-                    'Şerbetli': 'serbetli-tatlilar',
-                    'Fırın': 'firin-ve-unlu-mamuller',
-                    'Kurabiye': 'kurabiyeler'
+                    'Pasta': 'ozel-pastalar',
+                    'Şerbetli': 'geleneksel-baklava',
+                    'Fırın': 'firin-kahvalti',
+                    'Kurabiye': 'butik-kurabiyeler'
                   };
                   const categoryId = catMap[product.category];
                   const targetCategory = categories.find(c => c.id === categoryId);

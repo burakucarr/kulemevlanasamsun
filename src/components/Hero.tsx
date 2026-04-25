@@ -275,7 +275,7 @@ function TrayCard({ cat, index, onClick }: TrayCardProps) {
           fill
           sizes="(max-width: 768px) 50vw, 20vw"
           className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 brightness-95 contrast-[1.05]"
-          priority={index < 5}
+          priority={index < 3}
         />
 
         {/* Atmospheric Tint - Readability Gradient */}
