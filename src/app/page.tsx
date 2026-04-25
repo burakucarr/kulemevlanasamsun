@@ -179,6 +179,10 @@ export default function Home() {
         {/* Draggable Slider Container */}
         <div className="relative px-4 md:px-0">
           <motion.div 
+            initial={{ x: 80, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ type: "spring", damping: 25, stiffness: 80, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
             className="flex gap-6 md:gap-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory cursor-grab active:cursor-grabbing pb-12"
             style={{ 
               scrollbarWidth: 'none', 
