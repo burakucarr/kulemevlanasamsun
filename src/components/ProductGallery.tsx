@@ -4,11 +4,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
-import type { ProductCategory } from "@/data/products";
+import type { ProductCategory, ProductImage } from "@/data/products";
+import { Heart } from "lucide-react";
 
 interface ProductGalleryProps {
   category: ProductCategory | null;
   onClose: () => void;
+  onSelectProduct?: (img: ProductImage) => void;
 }
 
 const backdrop = {
@@ -29,7 +31,7 @@ const imgVariant = {
   exit: { opacity: 0, scale: 0.92, transition: { duration: 0.2 } },
 };
 
-export default function ProductGallery({ category, onClose }: ProductGalleryProps) {
+export default function ProductGallery({ category, onClose, onSelectProduct }: ProductGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Close on Escape
@@ -150,14 +152,26 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Price Tag Overlay */}
+                    {img.price && (
+                      <div className="absolute top-3 right-3 z-10">
+                        <div className="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-white/20">
+                          <span className="text-primary font-black text-sm">
+                            {img.price} <span className="text-[10px] opacity-60">TL</span>
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 border border-white/40">
-                        <ZoomIn size={20} className="text-white" />
+                      <div className="bg-white/20 backdrop-blur-md rounded-full p-3 border border-white/40 scale-90 group-hover:scale-100 transition-transform">
+                        <ZoomIn size={24} className="text-white" />
                       </div>
                     </div>
-                    <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                      <p className="text-white text-xs font-medium leading-snug drop-shadow">{img.alt}</p>
+                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                      <p className="text-white text-xs md:text-sm font-bold leading-snug drop-shadow-lg">{img.alt}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -210,11 +224,45 @@ export default function ProductGallery({ category, onClose }: ProductGalleryProp
                   </AnimatePresence>
                 </div>
 
-                {/* Caption */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10">
-                  <p className="text-white text-sm font-medium">
-                    {category.images[lightboxIndex]?.alt}
-                  </p>
+                {/* Caption & Price & Action */}
+                <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-[600px]">
+                  <div 
+                    className="bg-[#291506]/95 backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6"
+                    style={{
+                      boxShadow: '0 24px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)'
+                    }}
+                  >
+                    <div className="text-center sm:text-left flex-1">
+                      <p className="text-white/90 text-sm md:text-[15px] font-semibold tracking-wide mb-2 leading-snug">
+                        {category.images[lightboxIndex]?.alt}
+                      </p>
+                      {category.images[lightboxIndex]?.price && (
+                        <p className="text-[#D4A373] font-black text-2xl drop-shadow-sm">
+                          {category.images[lightboxIndex].price} <span className="text-xs font-bold tracking-widest text-[#D4A373]/60 uppercase ml-1">TL</span>
+                        </p>
+                      )}
+                    </div>
+                    
+                    {onSelectProduct && (
+                      <motion.button
+                        whileHover={{ scale: 1.02, y: -1 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectProduct(category.images[lightboxIndex]);
+                        }}
+                        className="bg-[#D4A373] text-white px-8 py-4 rounded-[1.5rem] flex items-center justify-center gap-3 transition-colors hover:bg-[#C29062]"
+                        style={{
+                          boxShadow: '0 10px 25px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 5px rgba(0,0,0,0.15)'
+                        }}
+                      >
+                        <Heart size={16} strokeWidth={3} fill="currentColor" className="opacity-100" />
+                        <span className="font-extrabold text-[11px] md:text-xs uppercase tracking-[0.2em] pt-0.5">
+                          Bunu İstiyorum
+                        </span>
+                      </motion.button>
+                    )}
+                  </div>
                 </div>
 
                 {/* Counter */}

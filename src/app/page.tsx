@@ -11,7 +11,7 @@ import FloatingContact from "@/components/FloatingContact";
 import CustomOrderForm from "@/components/CustomOrderForm";
 import FAQ from "@/components/FAQ";
 import { categories } from "@/data/products";
-import type { ProductCategory } from "@/data/products";
+import type { ProductCategory, ProductImage } from "@/data/products";
 
 const ProductGallery = dynamic(() => import("@/components/ProductGallery"), {
   ssr: false,
@@ -26,6 +26,7 @@ const featuredProducts = [
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ProductImage | null>(null);
 
   const [isMuted, setIsMuted] = useState(true);
 
@@ -57,6 +58,15 @@ export default function Home() {
             key={activeCategory.id}
             category={activeCategory}
             onClose={() => setActiveCategory(null)}
+            onSelectProduct={(img) => {
+              setSelectedProduct(img);
+              setActiveCategory(null);
+              // Wait for modal exit animation and body overflow:hidden removal
+              setTimeout(() => {
+                const form = document.getElementById('ozel-siparis-formu');
+                if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 400);
+            }}
           />
         )}
       </AnimatePresence>
@@ -156,7 +166,12 @@ export default function Home() {
       </section>
 
       {/* Custom Order Form Section */}
-      <CustomOrderForm onViewGallery={handleOpenOzelPasta} />
+      <div id="ozel-siparis-formu" className="scroll-mt-24" />
+      <CustomOrderForm 
+        onViewGallery={handleOpenOzelPasta} 
+        selectedProduct={selectedProduct}
+        onClearSelection={() => setSelectedProduct(null)}
+      />
 
       {/* Testimonials Section */}
       <section className="py-24 md:py-40 bg-[#FDFDF5] overflow-hidden">

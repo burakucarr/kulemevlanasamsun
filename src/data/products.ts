@@ -1,6 +1,7 @@
 export interface ProductImage {
   src: string;
   alt: string;
+  price?: string;
 }
 
 export interface ProductCategory {
@@ -30,26 +31,26 @@ export const categories: ProductCategory[] = [
     speed: 7,
     tilt: -3,
     images: [
-      { src: "/images/products/ozel-pastalar/490050663_17853985410422821_7303165139907897190_n.jpg", alt: "Samsun Atakum Butik Pasta Tasarımı" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_490452031_17854248852422821_8548534260366819801_n.jpg", alt: "Özel Tasarım Doğum Günü Pastası Samsun" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_490743457_17854099698422821_4187354030451924821_n.jpg", alt: "Kişiye Özel Butik Pasta Atakum" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_491528301_17855872080422821_6046623210164363384_n.jpg", alt: "Samsun Nişan ve Düğün Pastası Modelleri" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_523262680_17867706279422821_2674668591482809091_n.jpg", alt: "El Yapımı Taze Butik Pasta Atakum" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_523449272_17867706222422821_6495510505961476825_n.jpg", alt: "Kule Mevlana Özel Pasta Tasarımı" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_553366270_17875191720422821_2377806817688649539_n.jpg", alt: "Modern Butik Pasta Çeşitleri Samsun" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_554190583_17875191321422821_874873915527780982_n.jpg", alt: "Atakum En İyi Butik Pastane" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_556106145_17875556520422821_1642320621460907840_n.jpg", alt: "Kule Mevlana Şık Pasta Modelleri" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_572138948_17878665126422821_5065998991620406529_n.jpg", alt: "Özel Gün Kutlama Pastası Samsun" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_582588984_17880999507422821_3819213066559741059_n.jpg", alt: "Artizan Pasta Üretimi Atakum" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_590028392_17883084984422821_3767056307367947246_n.jpg", alt: "Samsunspor Logolu Özel Pasta Tasarımı" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_602948970_17884836735422821_3361864811543741959_n.jpg", alt: "Kule Mevlana Butik Lezzetler" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_606996469_17885535705422821_5054970939280122249_n.jpg", alt: "Taze ve Organik Malzemeli Pastalar Atakum" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_622315515_17890050882422821_8181122592771459229_n.jpg", alt: "Samsun Atakum Özel Sipariş Pasta" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_626798724_17890455741422821_6012669632241394517_n.jpg", alt: "Kule Mevlana Pastane Ürünleri" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_633370552_17891955177422821_3816781503488015459_n.jpg", alt: "Figürlü ve Konsept Pastalar Samsun" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_671272198_17901886233422821_2757262807411359893_n.jpg", alt: "Atakum Butik Pasta Fiyatları" },
-      { src: "/images/products/ozel-pastalar/SaveClip.App_671720531_17901772122422821_5351181935955865123_n.jpg", alt: "En Lezzetli Butik Pastalar Samsun" },
-      { src: "/images/products/ozel-pastalar/_Pastasever__AtakumPastane___KuleMevlana.jpg", alt: "Kule Mevlana Atakum Pastane Giriş" },
+      { src: "/images/products/ozel-pastalar/490050663_17853985410422821_7303165139907897190_n.jpg", alt: "Samsun Atakum Butik Pasta Tasarımı", price: "850" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_490452031_17854248852422821_8548534260366819801_n.jpg", alt: "Özel Tasarım Doğum Günü Pastası Samsun", price: "950" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_490743457_17854099698422821_4187354030451924821_n.jpg", alt: "Kişiye Özel Butik Pasta Atakum", price: "780" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_491528301_17855872080422821_6046623210164363384_n.jpg", alt: "Samsun Nişan ve Düğün Pastası Modelleri", price: "1200" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_523262680_17867706279422821_2674668591482809091_n.jpg", alt: "El Yapımı Taze Butik Pasta Atakum", price: "880" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_523449272_17867706222422821_6495510505961476825_n.jpg", alt: "Kule Mevlana Özel Pasta Tasarımı", price: "920" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_553366270_17875191720422821_2377806817688649539_n.jpg", alt: "Modern Butik Pasta Çeşitleri Samsun", price: "750" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_554190583_17875191321422821_874873915527780982_n.jpg", alt: "Atakum En İyi Butik Pastane", price: "820" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_556106145_17875556520422821_1642320621460907840_n.jpg", alt: "Kule Mevlana Şık Pasta Modelleri", price: "980" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_572138948_17878665126422821_5065998991620406529_n.jpg", alt: "Özel Gün Kutlama Pastası Samsun", price: "890" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_582588984_17880999507422821_3819213066559741059_n.jpg", alt: "Artizan Pasta Üretimi Atakum", price: "940" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_590028392_17883084984422821_3767056307367947246_n.jpg", alt: "Samsunspor Logolu Özel Pasta Tasarımı", price: "1050" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_602948970_17884836735422821_3361864811543741959_n.jpg", alt: "Kule Mevlana Butik Lezzetler", price: "870" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_606996469_17885535705422821_5054970939280122249_n.jpg", alt: "Taze ve Organik Malzemeli Pastalar Atakum", price: "910" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_622315515_17890050882422821_8181122592771459229_n.jpg", alt: "Samsun Atakum Özel Sipariş Pasta", price: "990" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_626798724_17890455741422821_6012669632241394517_n.jpg", alt: "Kule Mevlana Pastane Ürünleri", price: "840" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_633370552_17891955177422821_3816781503488015459_n.jpg", alt: "Figürlü ve Konsept Pastalar Samsun", price: "1100" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_671272198_17901886233422821_2757262807411359893_n.jpg", alt: "Atakum Butik Pasta Fiyatları", price: "860" },
+      { src: "/images/products/ozel-pastalar/SaveClip.App_671720531_17901772122422821_5351181935955865123_n.jpg", alt: "En Lezzetli Butik Pastalar Samsun", price: "930" },
+      { src: "/images/products/ozel-pastalar/_Pastasever__AtakumPastane___KuleMevlana.jpg", alt: "Kule Mevlana Atakum Pastane Giriş", price: "880" },
     ],
   },
   {

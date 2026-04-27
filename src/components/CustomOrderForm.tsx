@@ -2,15 +2,25 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MapPin, Sparkles, ShieldCheck } from "lucide-react";
+import { Send, MapPin, Sparkles, ShieldCheck, X } from "lucide-react";
+import { ProductImage } from "@/data/products";
+import Image from "next/image";
 
-export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () => void }) {
+export default function CustomOrderForm({ 
+  onViewGallery, 
+  selectedProduct,
+  onClearSelection
+}: { 
+  onViewGallery: () => void;
+  selectedProduct: ProductImage | null;
+  onClearSelection: () => void;
+}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     date: "",
-    people: "4-6",
+    people: "6-8 Kişilik",
     flavor: "Çikolatalı & Fıstıklı",
     eventType: "Doğum Günü",
     shape: "Yuvarlak",
@@ -19,10 +29,49 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
     notes: "",
   });
 
+  const calculatePrice = () => {
+    if (!selectedProduct || !selectedProduct.price) return null;
+    let base = parseInt(selectedProduct.price, 10);
+    if (isNaN(base)) return null;
+
+    const sizeMult: Record<string, number> = {
+      "4-6 Kişilik": 0.8,
+      "6-8 Kişilik": 1.0,
+      "8-10 Kişilik": 1.3,
+      "10-15 Kişilik": 1.8,
+      "20-30 Kişilik": 3.0,
+      "40-50 Kişilik": 4.5,
+      "50+ Kişilik": 6.0,
+    };
+    
+    let total = base * (sizeMult[formData.people] || 1.0);
+
+    if (formData.shape === "Çok Katlı") total += 300;
+    else if (formData.shape === "Özel Kesim (Rakam/Harf)") total += 150;
+    else if (formData.shape === "Kalp") total += 50;
+
+    if (formData.deliveryType === "Adrese Teslimat (+Ücretli)") total += 150;
+
+    return Math.round(total);
+  };
+
+  const currentPrice = calculatePrice();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `*Yeni Özel Pasta Tasarım Talebi*\n\n` +
-      `*Müşteri:* ${formData.name}\n` +
+    
+    // Format message
+    let message = `*Yeni Özel Pasta Tasarım Talebi*\n\n`;
+    if (selectedProduct) {
+      message += `*Seçilen Model:* ${selectedProduct.alt}\n`;
+    }
+    if (currentPrice) {
+      message += `*Tahmini Tutar:* ${currentPrice} TL\n\n`;
+    } else if (selectedProduct) {
+      message += `\n`;
+    }
+    
+    message += `*Müşteri:* ${formData.name}\n` +
       `*Telefon:* ${formData.phone}\n` +
       `*Etkinlik:* ${formData.eventType}\n` +
       `*Tarih:* ${formData.date}\n` +
@@ -31,7 +80,12 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
       `*Aroma:* ${formData.flavor}\n` +
       `*Teslimat:* ${formData.deliveryType}\n` +
       `*Alerjen Notu:* ${formData.allergies}\n` +
-      `*Tasarım Notları:* ${formData.notes}`;
+      `*Tasarım Notları:* ${formData.notes}\n\n`;
+
+    // Add image URL at the very bottom for WhatsApp link preview
+    if (selectedProduct) {
+      message += `*Model Resmi İçin Tıklayın:*\n${window.location.origin}${selectedProduct.src}`;
+    }
     
     window.open(`https://wa.me/905309351955?text=${encodeURIComponent(message)}`, "_blank");
     setIsSubmitted(true);
@@ -103,7 +157,46 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                     onSubmit={handleSubmit} 
                     className="space-y-8"
                   >
-                    {/* ... (keep existing form content) ... */}
+                    {/* Selected Product Card */}
+                    <AnimatePresence>
+                      {selectedProduct && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="bg-accent/5 rounded-3xl p-6 border border-accent/20 flex items-center gap-6 relative group">
+                            <div className="w-24 h-24 rounded-2xl overflow-hidden relative shadow-lg flex-shrink-0">
+                              <Image 
+                                src={selectedProduct.src} 
+                                alt={selectedProduct.alt} 
+                                fill 
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="flex-grow">
+                              <span className="text-[10px] font-black uppercase tracking-widest text-accent mb-1 block">Seçilen Model</span>
+                              <h4 className="font-bold text-primary text-sm leading-tight mb-1">{selectedProduct.alt}</h4>
+                              {selectedProduct.price && (
+                                <p className="text-accent font-black text-lg">
+                                  {currentPrice ? currentPrice : selectedProduct.price} TL
+                                  {currentPrice && <span className="text-[10px] font-bold text-primary/40 ml-2 tracking-widest">(TAHMİNİ TUTAR)</span>}
+                                </p>
+                              )}
+                            </div>
+                            <button
+                              type="button"
+                              onClick={onClearSelection}
+                              className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary/40 hover:text-accent hover:scale-110 transition-all shadow-sm"
+                            >
+                              <X size={16} />
+                            </button>
+                          </div>
+                          <div className="h-4" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">İsim Soyisim</label>
@@ -131,6 +224,7 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                       <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Etkinlik Türü</label>
                         <select
+                          value={formData.eventType}
                           className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
                           onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
                         >
@@ -158,6 +252,7 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                       <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Kişi Sayısı</label>
                         <select
+                          value={formData.people}
                           className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
                           onChange={(e) => setFormData({ ...formData, people: e.target.value })}
                         >
@@ -173,6 +268,7 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                       <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Pasta Formu</label>
                         <select
+                          value={formData.shape}
                           className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
                           onChange={(e) => setFormData({ ...formData, shape: e.target.value })}
                         >
@@ -189,6 +285,7 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                       <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Ana Aroma</label>
                         <select
+                          value={formData.flavor}
                           className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
                           onChange={(e) => setFormData({ ...formData, flavor: e.target.value })}
                         >
@@ -202,6 +299,7 @@ export default function CustomOrderForm({ onViewGallery }: { onViewGallery: () =
                       <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Teslimat</label>
                         <select
+                          value={formData.deliveryType}
                           className="w-full bg-transparent border-b-2 border-black/5 focus:border-accent px-2 py-3 outline-none transition-all font-medium text-primary cursor-pointer appearance-none"
                           onChange={(e) => setFormData({ ...formData, deliveryType: e.target.value })}
                         >
