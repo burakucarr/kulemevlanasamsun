@@ -290,11 +290,11 @@ export default function Home() {
               <div className="space-y-4">
                 <h5 className="font-black text-xl text-primary">TÜRKİŞ ŞUBESİ</h5>
                 <p className="font-medium leading-relaxed">
-                  Mevlana Mah. 736. Sk. <br />
+                  Mevlana Mah. 742. Sk. <br />
                   No: 2, Atakum / Samsun
                 </p>
                 <a 
-                  href="https://www.google.com/maps/dir/?api=1&destination=Mevlana+Mah+736+Sokak+No+2+Atakum+Samsun" 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Mevlana+Mah+742+Sokak+No+2+Atakum+Samsun" 
                   target="_blank" 
                   className="inline-block text-accent font-bold border-b border-accent/20 hover:border-accent transition-all pb-0.5 text-sm"
                 >

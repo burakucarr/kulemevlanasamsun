@@ -47,7 +47,7 @@ export default function JsonLd() {
       {
         "@type": "Bakery",
         "name": "Kule Mevlana Türkiş Şubesi",
-        "address": "Mevlana Mah. 736. Sk. No: 2, Atakum / Samsun"
+        "address": "Mevlana Mah. 742. Sk. No: 2, Atakum / Samsun"
       },
       {
         "@type": "Bakery",
