@@ -64,7 +64,7 @@ export default function Home() {
         )}
       </AnimatePresence>
       <main className="min-h-screen">
-        <Navbar />
+        <Navbar onOpenPastalar={handleOpenOzelPasta} />
       
       {/* Hero Section */}
       <div id="pastalar" />

@@ -5,7 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
-const Navbar = () => {
+interface NavbarProps {
+  onOpenPastalar?: () => void;
+}
+
+const Navbar = ({ onOpenPastalar }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -55,18 +59,15 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           <div className="flex items-center gap-8 text-sm font-semibold">
             {[
-              { name: 'Menü', id: 'menu' },
-              { name: 'Pastalar', id: 'pastalar' },
-              { name: 'Eklerler', id: 'eklerler' },
-              { name: 'Özel Sipariş', id: 'ozel-siparis' },
-              { name: 'Hakkımızda', id: 'hakkimizda' }
-            ].map((item) => (
+              { name: 'Ana Sayfa', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
+              { name: 'Pastalar', action: () => onOpenPastalar?.() },
+              { name: 'Hikayemiz', action: () => document.getElementById('hikayemiz')?.scrollIntoView({ behavior: 'smooth' }) },
+              { name: 'Özel Sipariş', action: () => document.getElementById('ozel-siparis-formu')?.scrollIntoView({ behavior: 'smooth' }) },
+              { name: 'Hakkımızda', action: () => document.getElementById('hakkimizda')?.scrollIntoView({ behavior: 'smooth' }) }
+            ].map((item, idx) => (
               <button 
-                key={item.id} 
-                onClick={() => {
-                  const el = document.getElementById(item.id);
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
+                key={idx} 
+                onClick={item.action}
                 className="text-primary/80 hover:text-accent transition-colors relative group text-sm font-semibold"
               >
                 {item.name}
@@ -116,17 +117,16 @@ const Navbar = () => {
             className="absolute top-24 left-4 right-4 glass-card rounded-3xl p-6 md:hidden flex flex-col gap-6 items-center"
           >
             {[
-              { name: 'Menü', id: 'menu' },
-              { name: 'Pastalar', id: 'pastalar' },
-              { name: 'Eklerler', id: 'eklerler' },
-              { name: 'Özel Sipariş', id: 'ozel-siparis' },
-              { name: 'Hakkımızda', id: 'hakkimizda' }
-            ].map((item) => (
+              { name: 'Ana Sayfa', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
+              { name: 'Pastalar', action: () => onOpenPastalar?.() },
+              { name: 'Hikayemiz', action: () => document.getElementById('hikayemiz')?.scrollIntoView({ behavior: 'smooth' }) },
+              { name: 'Özel Sipariş', action: () => document.getElementById('ozel-siparis-formu')?.scrollIntoView({ behavior: 'smooth' }) },
+              { name: 'Hakkımızda', action: () => document.getElementById('hakkimizda')?.scrollIntoView({ behavior: 'smooth' }) }
+            ].map((item, idx) => (
               <button 
-                key={item.id} 
+                key={idx} 
                 onClick={() => {
-                  const el = document.getElementById(item.id);
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  item.action();
                   setIsMobileMenuOpen(false);
                 }}
                 className="text-xl font-outfit font-semibold text-primary hover:text-accent transition-colors"
