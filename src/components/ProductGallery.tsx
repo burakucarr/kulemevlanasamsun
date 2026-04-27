@@ -197,10 +197,10 @@ export default function ProductGallery({ category, onClose, onSelectProduct }: P
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[151] flex items-center justify-center p-4 md:p-16"
+                className="fixed inset-0 z-[151] flex flex-col items-center justify-center p-4 pt-16 pb-6 md:p-12 md:pb-8 gap-4 md:gap-6"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative w-full h-full max-w-5xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl bg-black/20">
+                <div className="relative w-full max-w-4xl flex-1 rounded-3xl overflow-hidden shadow-2xl bg-black/20">
                   <AnimatePresence mode="wait">
                     {category.images[lightboxIndex] && (
                       <motion.div
@@ -225,7 +225,7 @@ export default function ProductGallery({ category, onClose, onSelectProduct }: P
                 </div>
 
                 {/* Caption & Price & Action */}
-                <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-[600px]">
+                <div className="w-full max-w-[600px] flex-shrink-0">
                   <div 
                     className="bg-[#291506]/95 backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6"
                     style={{

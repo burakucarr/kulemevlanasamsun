@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import FloatingCard from "@/components/FloatingCard";
 import FloatingContact from "@/components/FloatingContact";
 import CustomOrderForm from "@/components/CustomOrderForm";
 import FAQ from "@/components/FAQ";
@@ -17,12 +16,6 @@ const ProductGallery = dynamic(() => import("@/components/ProductGallery"), {
   ssr: false,
 });
 
-const featuredProducts = [
-  { id: 1, title: "Özel Meyveli Pasta", price: "450", category: "Pasta", imageUrl: "/images/products/pastalar.webp", delay: 0.1 },
-  { id: 2, title: "Midye Baklava", price: "520", category: "Şerbetli", imageUrl: "/images/products/baklava.webp", delay: 0.2, isSpecial: true },
-  { id: 3, title: "Meyveli Kruvasan", price: "120", category: "Fırın", imageUrl: "/images/products/firin.webp", delay: 0.3 },
-  { id: 4, title: "Butik Kurabiye", price: "85", category: "Kurabiye", imageUrl: "/images/products/kurabiye.webp", delay: 0.4 },
-];
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | null>(null);
@@ -81,54 +74,31 @@ export default function Home() {
       {/* Dark → Cream transition strip */}
       <div className="h-24 bg-gradient-to-b from-[#1A0C04] to-[#FDFDF5]" />
 
-      {/* Featured Products Gallery */}
-      <section id="menu" className="py-16 md:py-32 container mx-auto px-4 md:px-6 relative">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-4 md:gap-8">
-          <div className="max-w-3xl">
+      {/* Live Kitchen / Story Section */}
+      <section id="hikayemiz" className="py-16 md:py-32 container mx-auto px-4 md:px-6 relative">
+        <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-24">
+          <div className="flex-1 max-w-2xl">
             <h2 className="font-playfair font-black text-5xl md:text-7xl lg:text-8xl text-primary mb-6 md:mb-10 leading-tight">
               FIRINDAN <span className="text-accent italic">TAZE</span> <br /> HİKAYELER
             </h2>
-            <p className="text-primary/60 text-lg md:text-2xl font-medium max-w-xl">
+            <p className="text-primary/60 text-lg md:text-2xl font-medium leading-relaxed mb-10">
               Kule Mevlana mutfağında her sabah aşkla hazırlanan, 
-              o sıcak fırın kokusunun ardındaki gerçek emek ve tutku.
+              o sıcak fırın kokusunun ardındaki gerçek emek ve tutku. Gün boyu süren canlı üretimimizle, sizlere sadece bir lezzet değil, unutulmaz bir deneyim sunuyoruz.
             </p>
-          </div>
-          <button className="text-accent font-bold border-b-2 border-accent/20 hover:border-accent transition-all pb-2 text-lg md:text-xl flex-shrink-0">
-            Tüm Menüyü Keşfet
-          </button>
-        </div>
-
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 flex-grow">
-            {featuredProducts.map((product) => (
-              <FloatingCard 
-                key={product.id}
-                title={product.title}
-                price={product.price}
-                category={product.category}
-                imageUrl={product.imageUrl}
-                delay={product.delay}
-                isSpecial={product.isSpecial}
-                priority={product.id <= 2}
-                onClick={() => {
-                  const catMap: Record<string, string> = {
-                    'Pasta': 'ozel-pastalar',
-                    'Şerbetli': 'geleneksel-baklava',
-                    'Fırın': 'firin-kahvalti',
-                    'Kurabiye': 'butik-kurabiyeler'
-                  };
-                  const categoryId = catMap[product.category];
-                  const targetCategory = categories.find(c => c.id === categoryId);
-                  if (targetCategory) setActiveCategory(targetCategory);
-                }}
-              />
-            ))}
+            <button 
+              onClick={() => {
+                const form = document.getElementById('ozel-siparis-formu');
+                if (form) form.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-accent font-bold border-b-2 border-accent/20 hover:border-accent transition-all pb-2 text-lg md:text-xl"
+            >
+              Özel Sipariş Oluştur
+            </button>
           </div>
 
-          {/* Floating Video Portal Side */}
-          <div className="w-full lg:w-[400px] sticky top-32">
-            <div className="relative aspect-[9/16] w-full rounded-[60px] overflow-hidden border border-black/5 shadow-2xl group">
+          {/* Video Portal */}
+          <div className="w-full lg:w-[450px]">
+            <div className="relative aspect-[9/16] w-full rounded-[4rem] overflow-hidden border border-black/5 shadow-2xl group">
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
                <video
                 id="reels-video"
@@ -158,7 +128,7 @@ export default function Home() {
 
               <div className="absolute bottom-10 left-0 right-0 text-center z-20 px-6">
                 <span className="text-white/60 text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Canlı Mutfak</span>
-                <h4 className="text-white font-playfair font-black text-2xl italic">Şu An Fırında...</h4>
+                <h4 className="text-white font-playfair font-black text-3xl italic">Şu An Fırında...</h4>
               </div>
             </div>
           </div>

@@ -163,12 +163,21 @@ export default function Hero({ onCategoryClick }: HeroProps) {
           style={{ y: cardsLayer.y }}
           className="relative z-20 w-full px-6 pb-40 will-change-transform"
         >
-          {/* Mobile Scroll Indicator - Enhanced */}
-          <div className="flex md:hidden items-center justify-center gap-4 mb-8">
+          {/* Instructions & Mobile Scroll Indicator */}
+          <div className="flex flex-col items-center justify-center gap-4 mb-10">
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="text-white/80 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-center drop-shadow-lg"
+            >
+              Çeşitlerimizi Görmek İçin Kartlara Tıklayabilirsiniz
+            </motion.p>
+            
             <motion.div 
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ repeat: Infinity, duration: 2 }}
-              className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
+              className="flex md:hidden items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
             >
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Kaydırın</span>
               <motion.div
