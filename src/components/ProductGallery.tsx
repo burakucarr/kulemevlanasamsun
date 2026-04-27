@@ -237,9 +237,16 @@ export default function ProductGallery({ category, onClose, onSelectProduct }: P
                         {category.images[lightboxIndex]?.alt}
                       </p>
                       {category.images[lightboxIndex]?.price && (
-                        <p className="text-[#D4A373] font-black text-2xl drop-shadow-sm">
-                          {category.images[lightboxIndex].price} <span className="text-xs font-bold tracking-widest text-[#D4A373]/60 uppercase ml-1">TL</span>
-                        </p>
+                        <div>
+                          <p className="text-[#D4A373] font-black text-2xl drop-shadow-sm">
+                            {category.images[lightboxIndex].price} <span className="text-xs font-bold tracking-widest text-[#D4A373]/60 uppercase ml-1">TL</span>
+                          </p>
+                          {category.id === "ozel-pastalar" && (
+                            <p className="text-white/40 text-[9px] md:text-[10px] font-medium leading-tight mt-1 max-w-[250px] mx-auto sm:mx-0">
+                              *(6-8 Kişilik baz fiyattır. Ebat ve tasarıma göre değişiklik gösterebilir.)
+                            </p>
+                          )}
+                        </div>
                       )}
                     </div>
                     
