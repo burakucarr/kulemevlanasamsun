@@ -93,6 +93,40 @@ export default function CustomOrderForm({
 
   return (
     <section id="ozel-siparis" className="py-24 md:py-40 bg-gradient-to-br from-[#FFF5F5] via-white to-[#FFF9F0] relative overflow-hidden">
+      {/* Animated Mesh Gradient / Blobs Background */}
+      <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+        {/* Latte Blob */}
+        <motion.div 
+          animate={{ 
+            x: [0, 80, 0],
+            y: [0, 40, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-[#EADBC8] rounded-full blur-[100px]" 
+        />
+        {/* Peach Blob */}
+        <motion.div 
+          animate={{ 
+            x: [0, -60, 0],
+            y: [0, 80, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] bg-[#FCE9DB] rounded-full blur-[100px]" 
+        />
+        {/* Cream Blob */}
+        <motion.div 
+          animate={{ 
+            x: [0, 40, 0],
+            y: [0, -60, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[20%] left-[20%] w-[450px] h-[450px] bg-[#F8F4E1] rounded-full blur-[80px]" 
+        />
+      </div>
+
       {/* Decorative Blobs */}
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-pistachio/5 rounded-full blur-[120px]" />
@@ -101,15 +135,15 @@ export default function CustomOrderForm({
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
           {/* Left Content */}
-          <div className="relative">
+          <div className="relative z-10">
             <h2 className="font-playfair font-black text-5xl md:text-7xl text-primary mb-8 leading-[1.1]">
-              Hayalleriniz <br />
-              <span className="text-accent italic">Lezzete</span> Dönüşsün
+              Aklınızdaki <br />
+              <span className="text-accent italic">Pastayı</span> Birlikte Tasarlayalım
             </h2>
             
             <p className="text-primary/60 text-lg md:text-2xl font-medium mb-6 leading-relaxed">
-              Kule Mevlana'nın yarım asırlık ustalığını, sizin hayal gücünüzle birleştiriyoruz. 
-              Sadece size özel, eşi benzeri olmayan bir pasta deneyimi için formu doldurun.
+              Kule Mevlana'nın 50 yıllık tecrübesiyle, tam da istediğiniz gibi bir pasta hazırlayalım. 
+              Hayalinizdeki tasarımı ve detayları bize iletin, gerisini ustalarımıza bırakın.
             </p>
 
             <button 
@@ -117,13 +151,13 @@ export default function CustomOrderForm({
               className="group flex items-center gap-3 text-accent font-black uppercase tracking-widest text-sm mb-12 hover:text-primary transition-colors"
             >
               <Sparkles size={18} className="animate-pulse" />
-              <span className="border-b-2 border-accent/20 group-hover:border-primary transition-all">Pasta örnekleri için buraya tıklayınız</span>
+              <span className="border-b-2 border-accent/20 group-hover:border-primary transition-all">Pasta Galerisini İnceleyin</span>
             </button>
 
             <div className="space-y-8">
               {[
-                { icon: <ShieldCheck className="text-accent" />, title: "Özenle Seçilmiş Malzemeler", desc: "Sadece en taze meyveler ve gerçek Belçika çikolatasıyla hazırlıyoruz." },
-                { icon: <MapPin className="text-accent" />, title: "Adrese Teslim", desc: "Atakum ve çevresine özel soğutmalı araçlarımızla teslimat." },
+                { icon: <ShieldCheck className="text-accent" />, title: "En Taze, En Kaliteli", desc: "Hazır karışımlar kullanmıyoruz. Siparişinize özel, taptaze meyveler ve gerçek çikolatayla sıfırdan hazırlıyoruz." },
+                { icon: <MapPin className="text-accent" />, title: "Güvenli Teslimat", desc: "En mutlu gününüzde sürpriz yaşamamanız için, pastalarınızı soğutmalı araçlarımızla özenle taşıyoruz." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-6 items-start group">
                   <div className="w-14 h-14 rounded-3xl bg-white shadow-xl shadow-primary/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
@@ -335,7 +369,7 @@ export default function CustomOrderForm({
                       type="submit"
                       className="w-full bg-primary text-white font-black py-6 rounded-3xl flex items-center justify-center gap-4 hover:bg-accent transition-all duration-500 shadow-2xl shadow-primary/20 group"
                     >
-                      TASARIMI BAŞLAT <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      SİPARİŞ TALEBİNİ GÖNDER <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </motion.button>
                   </motion.form>
                 ) : (
